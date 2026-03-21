@@ -1,7 +1,16 @@
+import {Route, RouterProvider, createBrowserRouter, createRoutesFromElements} from 'react-router-dom'
+import MainLayout from '../layout/MainLayout';
+
 const App = () => {
-  return <>
-    <div className="text-5xl">Fly To Heavens</div>
-  </>
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path='/' element={<MainLayout />}>
+
+      </Route>
+    )
+  );
+
+  return <RouterProvider router={router}/>
 }
 
 export default App
