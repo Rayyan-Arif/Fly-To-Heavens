@@ -1,0 +1,181 @@
+Flight Reservation System — Product Documentation (MERN)
+
+1. Overview
+
+The Flight Reservation System is a full-stack web application that allows users to:
+- Search for available flights between locations
+- View flight details and seat availability
+- Reserve seats and book tickets
+- Manage their bookings
+
+The system also includes an administrative interface for managing flights, schedules, and bookings.
+
+This application simulates a real-world airline booking platform, focusing on correctness, concurrency, and user experience.
+
+--------------------------------------------------
+
+2. User Roles
+
+Guest User:
+- Can search flights
+- Can view flight details
+- Can see seat availability (read-only)
+
+Registered User:
+- Can book flights
+- Can select seats
+- Can view booking history
+- Can cancel bookings
+
+Admin:
+- Can add and manage flights
+- Can define routes and schedules
+- Can configure seat layouts
+- Can monitor bookings
+
+--------------------------------------------------
+
+3. Core Functional Features
+
+3.1 Flight Search System
+- Search by departure location, arrival location, and date
+- Optional: number of passengers
+- Shows airline, times, duration, price, available seats
+- Only future flights shown
+- Sorting and pagination supported
+
+3.2 Flight Details View
+- Full flight info
+- Seat map visualization
+- Seat status (available/reserved/booked)
+- Seat classes (economy/business)
+
+3.3 Seat Selection System
+- User selects seats from layout
+- Seats are temporarily locked
+- Lock expires after a set time (5–10 minutes)
+- Prevents double booking
+
+3.4 Booking System
+- Steps:
+  1. Select flight
+  2. Select seats
+  3. Enter passenger details
+  4. Confirm booking
+- Generates unique booking ID
+- Seats become permanently booked
+
+3.5 Booking Management
+- Users can view bookings
+- View flight details, seats, and timing
+- Optional cancellation:
+  - Seats become available again
+  - Booking marked cancelled (not deleted)
+
+3.6 Authentication System
+- User signup/login
+- Protected routes
+- Only logged-in users can book
+- Admin-only access control
+
+3.7 Admin Panel
+Flight Management:
+- Create flights with route, time, and price
+
+Schedule Management:
+- Define date-specific flights
+
+Seat Configuration:
+- Define layout, rows/columns, seat classes
+
+Booking Monitoring:
+- View all bookings
+- Track seat usage
+
+--------------------------------------------------
+
+4. Non-Functional Requirements
+
+Performance:
+- Fast search using indexing
+- Pagination required
+
+Data Consistency:
+- No double booking
+- Accurate seat status
+
+Scalability:
+- Handle many users
+- Prevent race conditions
+
+Security:
+- Password hashing
+- JWT/session auth
+- Protected admin routes
+
+--------------------------------------------------
+
+5. Key System Challenges
+
+Seat Concurrency:
+- Prevent multiple users booking same seat
+- Use locking + timeout
+
+Time-Based Logic:
+- Future flights only
+- Expiring seat locks
+
+Data Relationships:
+- Flights ↔ Seats
+- Users ↔ Bookings
+- Flights ↔ Bookings
+
+Multi-Step Flow:
+- Search → Select → Book → Confirm
+
+--------------------------------------------------
+
+6. Optional Advanced Features
+
+- Dynamic pricing
+- Email confirmations
+- Payment integration
+- Flight status updates
+- Notifications
+
+--------------------------------------------------
+
+End of Documentation
+
+
+
+PAGES:
+1. landing page
+2. login / signup page
+3. booking page
+4. all flights page
+5. one flight page
+6. cancel flight page
+7. 404 Not found page
+8. create flight page (for admin)
+9. update flight page (for admin)
+10. view all booking page (for admin)
+11. cancel someone's booking (for admin)
+12. view all users (for admin)
+13. delete one user (for admin)
+14. feedback / reviews page 
+15. view booked tickets (for user)
+16. user profile page
+
+USER FLOW:
+1. user opens landing page
+2. sees menu on the navigation bar
+3. landing page has reviews about the app (only 5), there is button of "see all reviews", user can click on it and go to -> feedback / reviews page where he will find all reviews.
+4. landing page has option to go to all flights, user clicks on it and can view all flights -> all flights page
+5. at all flights page, user can click on any flight and will visit that flight page -> one flight page
+6. at the one flight page, he sees flight details and a button that shows "book this flight", he clicks on it and goes to -> booking page
+7. at the booking page, he sees a form which he will fills with (details) to book a flight and then does payment and a ticket appears, if he selects booking ticket for more than 1 person then he will enter details of all of them and according to number of persons he entered, corresponding number of tickets will come.
+8. user can click on this profile pic and will go his profile page where he sees a button called "see all tickets", he clicks on it and see all booked tickets, along with each ticket, he sees a button called "cancel ticket", he clicks on it and goes to -> cancel flight page where he can cancel his ticket.
+
+--> for ADMIN:
+9. at the profile page, if user is admin then he will see other options too like see bookings, delete user, create bookings etc. he can click on any of the option and go to separate page and then perform action as needed.  
