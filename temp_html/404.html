@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page not found — Fly To Heavens</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <section class="flex min-h-screen flex-col">
+      <!-- Navigation -->
+      <header
+        class="sticky top-0 z-50 border-b border-[#E5E7EB] bg-[#1E3A8A] text-white shadow-sm"
+      >
+        <nav
+          class="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-6 sm:py-4 lg:px-8"
+          aria-label="Main"
+        >
+          <a
+            href="index.html"
+            class="text-center text-base font-semibold leading-snug tracking-tight text-white transition-colors hover:text-[#3B82F6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3B82F6] sm:text-left sm:text-lg md:text-3xl"
+            >Fly To Heavens</a>
+
+          <div
+            class="flex w-full items-center justify-center gap-2 sm:w-auto sm:justify-end sm:gap-3 md:gap-4"
+          >
+            <div
+              class="flex w-full max-w-md items-stretch justify-center gap-2 sm:w-auto sm:max-w-none sm:items-center sm:gap-3 md:gap-4"
+              data-nav="guest"
+            >
+              <a
+                href="#"
+                class="inline-flex min-h-[44px] flex-1 touch-manipulation items-center justify-center rounded-lg px-3 text-base font-medium leading-snug text-white/90 transition-colors hover:bg-white/10 hover:text-[#3B82F6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3B82F6] sm:flex-none sm:px-4 sm:py-2 md:min-h-[48px] md:text-lg md:leading-snug"
+                >Login</a>
+              <a
+                href="#"
+                class="inline-flex min-h-[44px] flex-1 touch-manipulation items-center justify-center whitespace-nowrap rounded-lg bg-[#3B82F6] px-4 py-2.5 text-base font-semibold leading-snug text-white shadow-sm transition-colors hover:bg-[#2563EB] active:bg-[#1D4ED8] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#93C5FD] sm:w-auto sm:flex-none sm:px-5 md:min-h-[48px] md:px-6 md:text-lg md:leading-snug"
+                >Sign up</a>
+            </div>
+
+            <div
+              class="flex hidden w-full max-w-md items-stretch justify-center gap-2 sm:w-auto sm:max-w-none sm:items-center sm:gap-3 md:gap-4"
+              data-nav="authenticated"
+            >
+              <a
+                href="#"
+                class="inline-flex min-h-[44px] flex-1 touch-manipulation items-center justify-center rounded-lg px-3 text-base font-medium leading-snug text-white/90 transition-colors hover:bg-white/10 hover:text-[#3B82F6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3B82F6] sm:flex-none sm:px-4 sm:py-2 md:min-h-[48px] md:text-lg md:leading-snug"
+                >Profile</a>
+              <a
+                href="#"
+                class="inline-flex min-h-[44px] flex-1 touch-manipulation items-center justify-center whitespace-nowrap rounded-lg border border-white/30 bg-transparent px-4 py-2.5 text-base font-semibold leading-snug text-white transition-colors hover:border-[#3B82F6] hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#93C5FD] sm:w-auto sm:flex-none sm:px-5 md:min-h-[48px] md:px-6 md:text-lg md:leading-snug"
+                >Log out</a>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <!-- Page content: all theme/layout for this view lives on this section -->
+      <section
+        class="flex flex-1 flex-col items-center justify-center bg-[#F9FAFB] px-4 py-16 text-[#111827] antialiased sm:py-20"
+        aria-labelledby="page-title"
+      >
+        <div class="w-full max-w-lg text-center">
+          <p
+            class="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-[#3B82F6]"
+          >
+            Error 404
+          </p>
+          <h1
+            id="page-title"
+            class="mb-4 text-4xl font-bold text-[#1E3A8A] sm:text-5xl"
+          >
+            Page not found
+          </h1>
+          <p class="mb-8 text-base leading-relaxed text-[#6B7280] sm:text-lg">
+            The address you opened does not match any page on Fly To Heavens. It
+            may have been moved, removed, or typed incorrectly.
+          </p>
+          <div
+            class="rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] p-6 shadow-sm sm:p-8"
+          >
+            <p class="mb-6 text-sm text-[#6B7280]">
+              Check the URL for typos, or return to the site to continue booking
+              and browsing flights.
+            </p>
+            <a
+              href="index.html"
+              class="inline-flex min-h-[48px] w-full touch-manipulation items-center justify-center rounded-lg bg-[#1E3A8A] px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-[#172554] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3B82F6] sm:w-auto"
+            >
+              Back to home
+            </a>
+          </div>
+          <p class="mt-8 text-xs text-[#6B7280]">
+            Fly To Heavens — flight reservations
+          </p>
+        </div>
+      </section>
+
+      <footer
+        class="mt-auto border-t border-[#E5E7EB] bg-[#1E3A8A] text-white"
+      >
+        <div
+          class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:flex lg:items-start lg:justify-between lg:px-8 lg:py-14"
+        >
+          <div class="mb-8 max-w-md lg:mb-0">
+            <p class="text-lg font-semibold sm:text-xl">Fly To Heavens</p>
+            <p class="mt-2 text-sm leading-relaxed text-white/80">
+              Search, book, and manage flights with a flow designed for clarity
+              and confidence—from first search to boarding pass.
+            </p>
+          </div>
+          <div
+            class="grid grid-cols-1 gap-8 text-sm sm:grid-cols-2 sm:gap-10 lg:gap-16"
+          >
+            <div>
+              <p class="font-semibold text-[#93C5FD]">Explore</p>
+              <ul class="mt-3 space-y-2 text-white/85">
+                <li>
+                  <a
+                    href="index.html#all-flights"
+                    class="transition-colors hover:text-[#3B82F6]"
+                    >All flights</a>
+                </li>
+                <li>
+                  <a
+                    href="reviews.html"
+                    class="transition-colors hover:text-[#3B82F6]"
+                    >Reviews</a>
+                </li>
+                <li>
+                  <a
+                    href="index.html#about"
+                    class="transition-colors hover:text-[#3B82F6]"
+                    >About</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p class="font-semibold text-[#93C5FD]">Account</p>
+              <ul class="mt-3 space-y-2 text-white/85">
+                <li>
+                  <a href="#" class="transition-colors hover:text-[#3B82F6]"
+                    >Login</a>
+                </li>
+                <li>
+                  <a href="#" class="transition-colors hover:text-[#3B82F6]"
+                    >Sign up</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-white/15 bg-[#172554]">
+          <div
+            class="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-4 text-xs text-white/70 sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:text-sm lg:px-8"
+          >
+            <p>© 2026 Fly To Heavens. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </section>
+  </body>
+</html>

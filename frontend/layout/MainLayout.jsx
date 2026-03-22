@@ -1,10 +1,15 @@
 import { Outlet } from 'react-router-dom'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
+import ScrollToTop from '../components/Scroller'
 
 const MainLayout = () => {
   return (
     <>
-        <div>Hello from the flyers</div>
+        <Navbar />
+        <ScrollToTop />
         <Outlet />
+        <Footer />
     </>
   )
 }

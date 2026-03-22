@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fly To Heavens — Flight Reservations</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen bg-[#FFFFFF] text-[#111827] antialiased">
+    <section
+      class="flex min-h-screen flex-col"
+      aria-label="Fly To Heavens landing page"
+    >
+      <!-- Navigation -->
+      <header
+        class="sticky top-0 z-50 border-b border-[#E5E7EB] bg-[#1E3A8A] text-white shadow-sm"
+      >
+        <nav
+          class="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-6 sm:py-4 lg:px-8"
+          aria-label="Main"
+        >
+          <a
+            href="#"
+            class="text-center text-base font-semibold leading-snug tracking-tight text-white transition-colors hover:text-[#3B82F6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3B82F6] sm:text-left sm:text-lg md:text-3xl"
+            >Fly To Heavens</a>
+
+          <div
+            class="flex w-full items-center justify-center gap-2 sm:w-auto sm:justify-end sm:gap-3 md:gap-4"
+          >
+            <!-- Guest: show this group. When logged in, add `hidden` here and remove `hidden` from the next group. -->
+            <div
+              class="flex w-full max-w-md items-stretch justify-center gap-2 sm:w-auto sm:max-w-none sm:items-center sm:gap-3 md:gap-4"
+              data-nav="guest"
+            >
+              <a
+                href="#"
+                class="inline-flex min-h-[44px] flex-1 touch-manipulation items-center justify-center rounded-lg px-3 text-base font-medium leading-snug text-white/90 transition-colors hover:bg-white/10 hover:text-[#3B82F6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3B82F6] sm:flex-none sm:px-4 sm:py-2 md:min-h-[48px] md:text-lg md:leading-snug"
+                >Login</a>
+              <a
+                href="#"
+                class="inline-flex min-h-[44px] flex-1 touch-manipulation items-center justify-center whitespace-nowrap rounded-lg bg-[#3B82F6] px-4 py-2.5 text-base font-semibold leading-snug text-white shadow-sm transition-colors hover:bg-[#2563EB] active:bg-[#1D4ED8] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#93C5FD] sm:w-auto sm:flex-none sm:px-5 md:min-h-[48px] md:px-6 md:text-lg md:leading-snug"
+                >Sign up</a>
+            </div>
+
+            <!-- Authenticated: hidden by default; toggle with your JS -->
+            <div
+              class="flex hidden w-full max-w-md items-stretch justify-center gap-2 sm:w-auto sm:max-w-none sm:items-center sm:gap-3 md:gap-4"
+              data-nav="authenticated"
+            >
+              <a
+                href="#"
+                class="inline-flex min-h-[44px] flex-1 touch-manipulation items-center justify-center rounded-lg px-3 text-base font-medium leading-snug text-white/90 transition-colors hover:bg-white/10 hover:text-[#3B82F6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3B82F6] sm:flex-none sm:px-4 sm:py-2 md:min-h-[48px] md:text-lg md:leading-snug"
+                >Profile</a>
+              <a
+                href="#"
+                class="inline-flex min-h-[44px] flex-1 touch-manipulation items-center justify-center whitespace-nowrap rounded-lg border border-white/30 bg-transparent px-4 py-2.5 text-base font-semibold leading-snug text-white transition-colors hover:border-[#3B82F6] hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#93C5FD] sm:w-auto sm:flex-none sm:px-5 md:min-h-[48px] md:px-6 md:text-lg md:leading-snug"
+                >Log out</a>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <!-- Hero -->
+      <div
+        class="relative isolate min-h-[min(72vh,520px)] w-full overflow-hidden sm:min-h-[min(80vh,640px)] lg:min-h-[min(85vh,720px)]"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1920&q=80"
+          alt="Commercial airplane in flight above clouds"
+          class="absolute inset-0 h-full w-full object-cover"
+          width="1920"
+          height="1080"
+          decoding="async"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-[#1E3A8A]/80 via-[#1E3A8A]/55 to-[#1E3A8A]/85"
+          aria-hidden="true"
+        ></div>
+        <div
+          class="relative z-10 mx-auto flex h-full min-h-[min(72vh,520px)] max-w-6xl flex-col items-center justify-center px-4 py-12 text-center sm:min-h-[min(80vh,640px)] sm:px-6 sm:py-16 lg:min-h-[min(85vh,720px)] lg:py-20 lg:px-8"
+        >
+          <p
+            class="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#93C5FD] sm:text-sm sm:tracking-[0.2em]"
+          >
+            Book smarter. Fly calmer.
+          </p>
+          <h1
+            class="mb-4 max-w-3xl text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl"
+          >
+            Your next journey starts with Fly To Heavens
+          </h1>
+          <p
+            class="mb-8 max-w-2xl text-base leading-relaxed text-white/90 sm:mb-10 sm:text-lg lg:text-xl"
+          >
+            Search routes, compare flights, pick your seats, and manage bookings
+            in one place—built for clarity, speed, and peace of mind.
+          </p>
+          <div
+            class="flex w-full max-w-md flex-col gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4"
+          >
+            <a
+              href="#all-flights"
+              class="inline-flex min-h-[48px] w-full touch-manipulation items-center justify-center rounded-lg bg-[#3B82F6] px-6 py-3 text-base font-semibold text-white shadow-lg transition-colors hover:bg-[#2563EB] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#93C5FD] sm:w-auto sm:min-h-[44px]"
+              >Browse flights</a>
+            <a
+              href="#about"
+              class="inline-flex min-h-[48px] w-full touch-manipulation items-center justify-center rounded-lg border border-white/40 bg-white/10 px-6 py-3 text-base font-semibold text-white backdrop-blur-sm transition-colors hover:border-[#3B82F6] hover:bg-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#93C5FD] sm:w-auto sm:min-h-[44px]"
+              >How it works</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- About + CTA -->
+      <div
+        id="about"
+        class="scroll-mt-24 border-b border-[#E5E7EB] bg-[#F9FAFB] px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
+      >
+        <div class="mx-auto max-w-6xl">
+          <h2
+            class="mb-4 text-2xl font-bold leading-tight text-[#111827] sm:text-3xl md:text-4xl"
+          >
+            A full flight reservation experience
+          </h2>
+          <p
+            class="mb-4 max-w-3xl text-base leading-relaxed text-[#6B7280] sm:text-lg"
+          >
+            Fly To Heavens is a flight reservation platform where you can search
+            for available flights between locations, open detailed flight pages
+            with schedules and pricing, and see seat availability before you
+            commit. Signed-in travelers can select seats, complete bookings with
+            passenger details, and manage or cancel reservations from their
+            profile—while admins can maintain routes, schedules, seat layouts,
+            and bookings behind the scenes.
+          </p>
+          <p
+            class="mb-8 max-w-3xl text-sm leading-relaxed text-[#6B7280] sm:mb-10 sm:text-base"
+          >
+            The system is designed around real-world booking flows: fast search
+            with pagination, future flights only, clear seat status, and
+            short-lived seat locks so two people cannot claim the same seat at
+            once. Whether you are planning a weekend away or a longer trip, you
+            get a straightforward path from search to confirmed ticket.
+          </p>
+          <div
+            id="all-flights"
+            class="scroll-mt-24 flex flex-col gap-4 rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between sm:p-6"
+          >
+            <div class="min-w-0">
+              <h3 class="text-base font-semibold text-[#111827] sm:text-lg">
+                Ready to explore the schedule?
+              </h3>
+              <p class="mt-1 text-sm text-[#6B7280]">
+                Jump to the full list of flights and pick the one that fits your
+                plans.
+              </p>
+            </div>
+            <a
+              href="#"
+              class="inline-flex min-h-[48px] w-full shrink-0 touch-manipulation items-center justify-center rounded-lg bg-[#1E3A8A] px-5 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-[#172554] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3B82F6] sm:w-auto sm:px-6 sm:text-base"
+              >See all flights available</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reviews: 3 cards visible; data-review-prev / data-review-next + #reviews-track for your JS -->
+      <div
+        id="reviews"
+        class="border-b border-[#E5E7EB] bg-[#FFFFFF] py-12 sm:py-16"
+      >
+        <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <h2
+            class="mb-2 text-center text-2xl font-bold text-[#111827] sm:text-3xl"
+          >
+            Travelers love the experience
+          </h2>
+          <p class="mb-3 text-center text-sm text-[#6B7280] sm:text-base">
+            Three featured reviews in a row from medium screens up; stacked on
+            smaller viewports. Use the arrow buttons with your own script when
+            you paginate more reviews—the full list stays on the reviews page.
+          </p>
+          <div class="mb-8 flex justify-center sm:mb-10">
+            <a
+              href="reviews.html"
+              class="inline-flex min-h-[44px] touch-manipulation items-center justify-center gap-1 rounded-lg border-2 border-[#1E3A8A] bg-[#FFFFFF] px-5 py-2.5 text-center text-base font-semibold text-[#1E3A8A] shadow-sm transition-colors hover:border-[#3B82F6] hover:bg-[#F9FAFB] hover:text-[#1E3A8A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3B82F6] sm:px-6 sm:text-lg"
+            >
+              See all reviews
+              <span aria-hidden="true" class="text-[#3B82F6]">→</span>
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="border-y border-[#E5E7EB] bg-[#F9FAFB] py-8 sm:py-10"
+          role="region"
+          aria-label="Featured customer reviews"
+        >
+          <div
+            class="mx-auto flex max-w-6xl items-start gap-2 px-4 sm:items-stretch sm:gap-4 sm:px-6 lg:px-8"
+          >
+            <!-- Previous (hook up with your JS) -->
+            <button
+              type="button"
+              data-review-prev
+              class="inline-flex h-11 w-11 shrink-0 touch-manipulation items-center justify-center self-center rounded-full border border-[#E5E7EB] bg-[#FFFFFF] text-lg font-bold leading-none text-[#1E3A8A] shadow-sm transition-colors hover:border-[#3B82F6] hover:bg-[#EFF6FF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3B82F6] sm:h-12 sm:w-12 sm:text-xl"
+              aria-label="Show previous reviews"
+            >
+              &lt;
+            </button>
+
+            <div
+              id="reviews-track"
+              class="grid min-w-0 flex-1 grid-cols-1 gap-4 md:grid-cols-3"
+            >
+              <article
+                class="flex h-full flex-col rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] p-5 shadow-sm sm:p-6"
+              >
+                <div
+                  class="mb-3 flex gap-0.5 text-lg leading-none"
+                  aria-label="Rating: 5 out of 5 stars"
+                >
+                  <span class="text-amber-400" aria-hidden="true">★</span
+                  ><span class="text-amber-400" aria-hidden="true">★</span
+                  ><span class="text-amber-400" aria-hidden="true">★</span
+                  ><span class="text-amber-400" aria-hidden="true">★</span
+                  ><span class="text-amber-400" aria-hidden="true">★</span>
+                </div>
+                <p
+                  class="mb-4 flex-1 text-sm leading-relaxed text-[#111827] sm:text-base"
+                >
+                  “Search was fast and the seat map made choosing our row easy. We
+                  had our confirmation in minutes.”
+                </p>
+                <p class="text-sm font-semibold text-[#1E3A8A] sm:text-base">
+                  Maya Chen
+                </p>
+              </article>
+
+              <article
+                class="flex h-full flex-col rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] p-5 shadow-sm sm:p-6"
+              >
+                <div
+                  class="mb-3 flex gap-0.5 text-lg leading-none"
+                  aria-label="Rating: 4 out of 5 stars"
+                >
+                  <span class="text-amber-400" aria-hidden="true">★</span
+                  ><span class="text-amber-400" aria-hidden="true">★</span
+                  ><span class="text-amber-400" aria-hidden="true">★</span
+                  ><span class="text-amber-400" aria-hidden="true">★</span
+                  ><span class="text-[#D1D5DB]" aria-hidden="true">★</span>
+                </div>
+                <p
+                  class="mb-4 flex-1 text-sm leading-relaxed text-[#111827] sm:text-base"
+                >
+                  “Clean layout and straightforward booking steps. I would like
+                  even more filters, but overall very solid.”
+                </p>
+                <p class="text-sm font-semibold text-[#1E3A8A] sm:text-base">
+                  Jordan Ellis
+                </p>
+              </article>
+
+              <article
+                class="flex h-full flex-col rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] p-5 shadow-sm sm:p-6"
+              >
+                <div
+                  class="mb-3 flex gap-0.5 text-lg leading-none"
+                  aria-label="Rating: 5 out of 5 stars"
+                >
+                  <span class="text-amber-400" aria-hidden="true">★</span
+                  ><span class="text-amber-400" aria-hidden="true">★</span
+                  ><span class="text-amber-400" aria-hidden="true">★</span
+                  ><span class="text-amber-400" aria-hidden="true">★</span
+                  ><span class="text-amber-400" aria-hidden="true">★</span>
+                </div>
+                <p
+                  class="mb-4 flex-1 text-sm leading-relaxed text-[#111827] sm:text-base"
+                >
+                  “Loved seeing available seats before paying. Felt much more in
+                  control than other sites I have used.”
+                </p>
+                <p class="text-sm font-semibold text-[#1E3A8A] sm:text-base">
+                  Priya Nair
+                </p>
+              </article>
+            </div>
+
+            <button
+              type="button"
+              data-review-next
+              class="inline-flex h-11 w-11 shrink-0 touch-manipulation items-center justify-center self-center rounded-full border border-[#E5E7EB] bg-[#FFFFFF] text-lg font-bold leading-none text-[#1E3A8A] shadow-sm transition-colors hover:border-[#3B82F6] hover:bg-[#EFF6FF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3B82F6] sm:h-12 sm:w-12 sm:text-xl"
+              aria-label="Show next reviews"
+            >
+              &gt;
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer
+        class="mt-auto border-t border-[#E5E7EB] bg-[#1E3A8A] text-white"
+      >
+        <div
+          class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:flex lg:items-start lg:justify-between lg:px-8 lg:py-14"
+        >
+          <div class="mb-8 max-w-md lg:mb-0">
+            <p class="text-lg font-semibold sm:text-xl">Fly To Heavens</p>
+            <p class="mt-2 text-sm leading-relaxed text-white/80">
+              Search, book, and manage flights with a flow designed for clarity
+              and confidence—from first search to boarding pass.
+            </p>
+          </div>
+          <div
+            class="grid grid-cols-1 gap-8 text-sm sm:grid-cols-2 sm:gap-10 lg:gap-16"
+          >
+            <div>
+              <p class="font-semibold text-[#93C5FD]">Explore</p>
+              <ul class="mt-3 space-y-2 text-white/85">
+                <li>
+                  <a
+                    href="#all-flights"
+                    class="transition-colors hover:text-[#3B82F6]"
+                    >All flights</a>
+                </li>
+                <li>
+                  <a
+                    href="reviews.html"
+                    class="transition-colors hover:text-[#3B82F6]"
+                    >Reviews</a>
+                </li>
+                <li>
+                  <a href="#about" class="transition-colors hover:text-[#3B82F6]"
+                    >About</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p class="font-semibold text-[#93C5FD]">Account</p>
+              <ul class="mt-3 space-y-2 text-white/85">
+                <li>
+                  <a href="#" class="transition-colors hover:text-[#3B82F6]"
+                    >Login</a>
+                </li>
+                <li>
+                  <a href="#" class="transition-colors hover:text-[#3B82F6]"
+                    >Sign up</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-white/15 bg-[#172554]">
+          <div
+            class="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-4 text-xs text-white/70 sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:text-sm lg:px-8"
+          >
+            <p>© 2026 Fly To Heavens. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </section>
+  </body>
+</html>
