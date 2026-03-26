@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Ali Khan",
+    "email": "ali.khan1@example.com",
+    "password": "password123",
+    "passwordConfirm": "password123",
+    "age": 22,
+    "photo": "ali.jpg",
+    "address": "Karachi, Pakistan",
+    "role": "user"
+  },
+  {
+    "name": "Sara Ahmed",
+    "email": "sara.ahmed2@example.com",
+    "password": "securePass456",
+    "passwordConfirm": "securePass456",
+    "age": 25,
+    "photo": "sara.jpg",
+    "address": "Lahore, Pakistan",
+    "role": "admin"
+  },
+  {
+    "name": "Usman Tariq",
+    "email": "usman.tariq3@example.com",
+    "password": "usmanPass789",
+    "passwordConfirm": "usmanPass789",
+    "age": 30,
+    "photo": "usman.jpg",
+    "address": "Islamabad, Pakistan",
+    "role": "user"
+  },
+  {
+    "name": "Ayesha Malik",
+    "email": "ayesha.malik4@example.com",
+    "password": "ayeshaPass101",
+    "passwordConfirm": "ayeshaPass101",
+    "age": 21,
+    "photo": "ayesha.jpg",
+    "address": "Faisalabad, Pakistan",
+    "role": "user"
+  },
+  {
+    "name": "Bilal Hussain",
+    "email": "bilal.hussain5@example.com",
+    "password": "bilalPass202",
+    "passwordConfirm": "bilalPass202",
+    "age": 28,
+    "photo": "bilal.jpg",
+    "address": "Peshawar, Pakistan",
+    "role": "admin"
+  }
+]

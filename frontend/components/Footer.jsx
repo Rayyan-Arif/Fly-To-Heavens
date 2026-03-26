@@ -12,7 +12,7 @@ const Footer = () => {
             <p className="text-lg font-semibold sm:text-xl">Fly To Heavens</p>
             <p className="mt-2 text-sm leading-relaxed text-white/80">
                 Search, book, and manage flights with a flow designed for clarity
-                and confidence—from first search to boarding pass.
+                and confidence from first search to boarding pass.
             </p>
             </div>
             <div
