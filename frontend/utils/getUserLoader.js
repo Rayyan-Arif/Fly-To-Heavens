@@ -1,6 +1,7 @@
 const getUserLoader = async () => {
   try{
-    const user = await fetch('http://localhost:5000/api/users/me', {
+    const API_URL = import.meta.env.VITE_API_URL;
+    const user = await fetch(`${API_URL}/api/users/me`, {
       method: 'GET',
       credentials: 'include'
     });

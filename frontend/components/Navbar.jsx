@@ -1,12 +1,12 @@
 import { Link, useOutletContext } from "react-router-dom"
-import defaultAvatar from "../assets/default.jpg"
 import sendErrorSuccessMessage from '../utils/sendErrorSuccessMessage'
 
 const Navbar = ({isLoggedIn, user, setUser}) => {
   let username = user?.name;
 
   const logOutUser = async () => {
-    const res = await fetch('http://localhost:5000/api/users/logout', {
+    const API_URL = import.meta.env.VITE_API_URL;
+    const res = await fetch(`${API_URL}/api/users/logout`, {
       credentials: 'include'
     });
 
@@ -61,7 +61,7 @@ const Navbar = ({isLoggedIn, user, setUser}) => {
                   aria-label="Profile"
                 >
                   <img
-                    src={defaultAvatar}
+                    src={user?.photo}
                     alt="User profile"
                     className="h-9 w-9 rounded-full object-cover md:h-10 md:w-10"
                     />

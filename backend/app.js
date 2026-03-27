@@ -1,6 +1,7 @@
 const express = require('express');
 const reviewRouter = require('./routes/reviewRoutes');
 const userRouter = require('./routes/userRoutes');
+const flightRouter = require('./routes/flightRoutes');
 const globalErrorHandler = require('./controllers/errorController');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
@@ -17,6 +18,7 @@ app.use(express.json());
 
 app.use('/api/users', userRouter);
 app.use('/api/reviews', reviewRouter);
+app.use('/api/flights', flightRouter);
 
 app.use((req, res, next) => {
     res.status(404).send({

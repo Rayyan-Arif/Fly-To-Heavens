@@ -6,13 +6,15 @@ const ReviewsSection = ({isHome}) => {
   const [reviews, setReviews] = useState([]);
   const [rating, setRating] = useState(1);
   const [review, setReview] = useState('');
+  
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const {user, setUser} = useOutletContext();
   let username = user?.name;
   if(username) username = username.split(' ').map(name => name.slice(0,1).toUpperCase() + name.slice(1)).join(' ');
 
   const submitReview = async() => {
-    const res = await fetch('http://localhost:5000/api/reviews',{
+    const res = await fetch(`${API_URL}/api/reviews`,{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -37,7 +39,7 @@ const ReviewsSection = ({isHome}) => {
 
   useEffect(() => {
     const getReviews = async() => {
-      const res = await fetch('http://localhost:5000/api/reviews');
+      const res = await fetch(`${API_URL}/api/reviews`);
       const data = await res.json();
 
       setReviews(data.data.reviews);

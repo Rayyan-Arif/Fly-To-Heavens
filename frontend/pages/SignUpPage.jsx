@@ -14,8 +14,10 @@ const SignUpPage = () => {
 
   const navigate = useNavigate();
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const signUpUser = async () => {
-    const res = await fetch('http://localhost:5000/api/users/signup',{
+    const res = await fetch(`${API_URL}/api/users/signup`,{
       method: 'POST',
       credentials: 'include',
       headers: {

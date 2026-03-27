@@ -6,6 +6,8 @@ import ReviewsPage from '../pages/ReviewsPage';
 import LoginPage from '../pages/LoginPage';
 import SignUpPage from '../pages/SignUpPage';
 import getUserLoader from '../utils/getUserLoader';
+import FlightsPage from '../pages/FlightsPage';
+import FlightPage from '../pages/FlightPage';
 
 const App = () => {
   const router = createBrowserRouter(
@@ -15,6 +17,8 @@ const App = () => {
         <Route path='/login' element={<LoginPage />}/>
         <Route path='/signup' element={<SignUpPage />}/>
         <Route path='/reviews' element={<ReviewsPage />}/>
+        <Route path='/flights' element={<FlightsPage />}/>
+        <Route path='/flights/:slug' element={<FlightPage />}/> 
         <Route path='*' element={<NotFoundPage />}/>
       </Route>
     )
