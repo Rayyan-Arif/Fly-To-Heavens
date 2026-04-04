@@ -40,7 +40,6 @@ exports.signup = async (req, res, next) => {
         };
 
         if(req.body.photo) filteredUser.photo = req.body.photo;
-        if(req.body.role) filteredUser.role = req.body.role;
 
         const user = await User.create(filteredUser);
 
@@ -77,14 +76,14 @@ exports.authorize = async (req, res, next) => {
         const token = req.cookies.jwt;
         
         if(!token){
-            return next(new AppError('Please log in before this operation', 401));
+            return next(new AppError('Please log in before this operation!', 401));
         }
 
         const payload = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
         const user = await User.findOne({_id: payload.id}).select('-__v');
 
         if(!user){
-            return next(new AppError('User with this token does not exist!', 404));
+            return next(new AppError('User with this token does not exist!', 401));
         }
 
         if(user.isPasswordChanged(payload.iat)){
@@ -100,8 +99,7 @@ exports.authorize = async (req, res, next) => {
 
 exports.logOut = (req, res, next) => {
     try{
-        res.cookie('jwt','logout',{
-            expires: new Date(Date.now() + 10 * 10000),
+        res.clearCookie('jwt', {
             httpOnly: true
         })
 

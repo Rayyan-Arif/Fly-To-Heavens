@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ReviewCard from "./ReviewCard";
-import { useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import sendErrorSuccessMessage from '../utils/sendErrorSuccessMessage';
 
 const ReviewsSection = ({isHome}) => {
   const [reviews, setReviews] = useState([]);
@@ -8,6 +9,7 @@ const ReviewsSection = ({isHome}) => {
   const [review, setReview] = useState('');
   
   const API_URL = import.meta.env.VITE_API_URL;
+  const navigate = useNavigate();
 
   const {user, setUser} = useOutletContext();
   let username = user?.name;
@@ -16,6 +18,7 @@ const ReviewsSection = ({isHome}) => {
   const submitReview = async() => {
     const res = await fetch(`${API_URL}/api/reviews`,{
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -27,6 +30,9 @@ const ReviewsSection = ({isHome}) => {
     });
 
     const data = await res.json();
+    if(data.status === 'error'){
+      sendErrorSuccessMessage('error', data.message);
+    }
     const newReview = {...data.data.review, user};
 
     setReviews([...reviews, newReview]);
@@ -50,18 +56,22 @@ const ReviewsSection = ({isHome}) => {
 
   return (
     <>
-    <section
-        id="reviews-track"
-        className={`grid min-w-0 flex-1 grid-cols-1 gap-4 ${isHome ? 'md:grid-cols-3' : 'md:grid-cols-2'}`}
-    >
+    {
+      reviews.length !== 0 ?
+      <section
+          id="reviews-track"
+          className={`grid min-w-0 flex-1 grid-cols-1 gap-4 ${isHome ? 'md:grid-cols-3' : 'md:grid-cols-2'}`}
+      >
         {
-          reviews.length !== 0 ?
           reviews.map((ind_review, index) => {
             return isHome && index>2 ? '' : <ReviewCard key={ind_review._id} review={ind_review}/>
-          }) :
-          <span className="text-base md:text-xl p-6">No reviews yet! Be the first to give us a review...</span>
+          })
         }
-    </section>
+          
+      </section> :
+      <span className="text-base md:text-xl p-6">No reviews yet! Be the first to give us a review...</span>
+    }
+
     {
       isHome === false ? 
       <article className="flex h-full flex-col rounded-xl border border-[#E5E7EB] bg-[#FFFFFF] p-5 shadow-sm sm:p-6">

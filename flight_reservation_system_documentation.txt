@@ -160,7 +160,7 @@ PAGES:
 8. create flight page (for admin)
 9. update flight page (for admin)
 10. view all booking page (for admin)
-11. cancel someone's booking (for admin)
+11. cancel booking (for user)
 12. view all users (for admin)
 13. delete one user (for admin)
 14. feedback / reviews page 
@@ -179,3 +179,13 @@ USER FLOW:
 
 --> for ADMIN:
 9. at the profile page, if user is admin then he will see other options too like see bookings, delete user, create bookings etc. he can click on any of the option and go to separate page and then perform action as needed.  
+
+
+---tasks to complete---
+1. complete user dashboard:
+  -> update user info (profile pic also)
+  -> password reset functionality
+  -> admin panel options
+
+2. bookings (with payments)
+3. polishing the website

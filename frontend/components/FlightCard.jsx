@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 
 const FlightCard = ({flight}) => {
     const hours = parseInt(flight.duration/60);
@@ -9,6 +9,8 @@ const FlightCard = ({flight}) => {
         hour: '2-digit',
         minute: '2-digit'
     });
+
+    const {user} = useOutletContext();
 
     return (
         <div className="rounded-2xl border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-md">
@@ -56,19 +58,31 @@ const FlightCard = ({flight}) => {
                 </div>
             </div>
 
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
                 <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-gray-500">
                     Price
                 </p>
                 <p className="mt-1 text-xl font-bold text-blue-900">${flight.price}</p>
                 </div>
+                <div className="flex flex-wrap items-center justify-end gap-2">
+                {
+                    user?.role === 'admin' ?
+                    <Link
+                    to={`/flights/update/${flight.slug}`}
+                    className="inline-flex min-h-[44px] items-center justify-center rounded-lg border-2 border-[#1E3A8A] bg-white px-4 py-2.5 text-sm font-semibold text-[#1E3A8A] transition-colors hover:bg-[#F9FAFB] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3B82F6]"
+                    >
+                    Update
+                    </Link> :
+                    ''
+                }
                 <Link
                 to={`/flights/${flight.slug}`}
                 className="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-[#1E3A8A] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#172554] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3B82F6]"
                 >
                 View
                 </Link>
+                </div>
             </div>
             </div>
         </div>

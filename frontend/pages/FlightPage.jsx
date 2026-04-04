@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useOutletContext, useParams } from "react-router-dom";
 import FlightNotFound from "../components/FlightNotFound";
+import sendErrorSuccessMessage from "../utils/sendErrorSuccessMessage";
 
 const FlightPage = () => {
     const API_URL = import.meta.env.VITE_API_URL;
@@ -11,10 +12,28 @@ const FlightPage = () => {
     const [time, setTime] = useState('');
     const { slug } = useParams();
 
+    const {user, setUser} = useOutletContext();
+
+    const navigate = useNavigate();
+
     useEffect(() => {
+        if(!user){
+            navigate('/login');
+            return;
+        }
+
         const fetchFlight = async () => {
-            const res = await fetch(`${API_URL}/api/flights/${slug}`);
+            const res = await fetch(`${API_URL}/api/flights/${slug}`, {
+                credentials: 'include'
+            });
             const data = await res.json();
+
+            if(data.message?.includes('Please log in')){
+                sendErrorSuccessMessage('error',data.message);
+                setUser(null);
+                navigate('/login');
+                return;
+            }
 
             setFlight(data?.data?.flight);
             setDate(new Date(data?.data?.flight.dateAndTime));
@@ -121,7 +140,7 @@ const FlightPage = () => {
                         <ol className="mt-4 space-y-3">
                             {
                                 flight.stops?.map(stop => {
-                                    return <li className="flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4">
+                                    return <li key={stop} className="flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4">
                                                 <span className="mt-1 h-2.5 w-2.5 rounded-full bg-blue-600"></span>
                                                 <div>
                                                     <p className="text-sm md:test-base font-semibold text-gray-900">{stop}</p>

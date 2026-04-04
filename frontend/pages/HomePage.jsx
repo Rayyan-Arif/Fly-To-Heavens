@@ -1,5 +1,4 @@
 import { Link, useNavigate, useOutletContext, useRouteLoaderData } from "react-router-dom"
-import ReviewCard from '../components/ReviewCard'
 import ReviewsSection from "../components/ReviewsSection";
 
 const HomePage = () => {
@@ -140,7 +139,7 @@ const HomePage = () => {
           aria-label="Featured customer reviews"
         >
           <div
-            className="mx-auto flex max-w-6xl items-start gap-2 px-4 sm:items-stretch sm:gap-4 sm:px-6 lg:px-8"
+            className="mx-auto flex max-w-6xl items-start gap-2 px-4 sm:items-stretch sm:gap-4 sm:px-6 lg:px-8 justify-center"
           >
             {/* <button
               type="button"

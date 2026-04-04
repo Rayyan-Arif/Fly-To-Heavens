@@ -51,10 +51,6 @@ flightSchema.pre('save', function(){
         lower: true,
         strict: true
     });
-
-    const photoname = this.arrival.replace(/ /g, "").toLowerCase();
-
-    this.photo = `../assets/${photoname}.jpg`;
 });
 
 const flightModel = new mongoose.model('Flight', flightSchema);

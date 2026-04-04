@@ -1,16 +1,35 @@
 import { useState } from "react";
 import { useEffect } from "react"
 import FlightCard from "../components/FlightCard";
+import sendErrorSuccessMessage from '../utils/sendErrorSuccessMessage';
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 const FlightsPage = () => {
     const API_URL = import.meta.env.VITE_API_URL;
     const [flights, setFlights] = useState([]);
 
+    const {user, setUser} = useOutletContext();
+    const navigate = useNavigate();
+    
     useEffect(() => {
+        if(!user){
+            navigate('/login');
+            return;
+        }
+
         const fetchFlights = async() => {
-            const res = await fetch(`${API_URL}/api/flights`);
+            const res = await fetch(`${API_URL}/api/flights`, {
+                credentials: 'include'
+            });
             const data = await res.json();
-            setFlights(data.data.flights);
+            
+            if(data.message?.includes('Please log in')){
+                sendErrorSuccessMessage('error',data.message);
+                setUser(null);
+                return;
+            }
+
+            setFlights(data?.data?.flights);
         }
 
         fetchFlights();
@@ -29,7 +48,7 @@ const FlightsPage = () => {
 
         <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {
-                flights.map(flight => {
+                flights?.map(flight => {
                     return <FlightCard key={flight._id} flight={flight}/>
                 })
             }

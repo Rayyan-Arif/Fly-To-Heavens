@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fly To Heavens | Profile</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+  </head>
+  <body class="min-h-screen bg-gradient-to-br from-blue-50 via-gray-50 to-indigo-100 text-gray-900 antialiased">
+    <!-- Navbar: uses only default Tailwind palette (CDN v2 has no bg-[#...] arbitrary values) -->
+    <header class="sticky top-0 z-50 border-b border-blue-800 bg-blue-900 text-white shadow-md">
+      <div
+        class="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8"
+      >
+        <h1 class="text-center text-xl font-semibold tracking-tight sm:text-left sm:text-2xl">
+          Fly To Heavens
+        </h1>
+        <p class="text-center text-sm font-medium text-blue-200 sm:text-right sm:text-base">
+          Profile dashboard
+        </p>
+      </div>
+    </header>
+
+    <div
+      class="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-8 lg:flex-row lg:px-8 lg:py-10"
+    >
+      <aside
+        class="w-full shrink-0 overflow-hidden rounded-2xl border border-gray-200 bg-white text-gray-900 shadow-lg lg:w-80"
+        aria-label="Dashboard navigation"
+      >
+        <div class="border-b border-gray-200 bg-gray-50 px-5 py-5 sm:px-6">
+          <p class="text-xs font-semibold uppercase tracking-widest text-blue-600 sm:text-sm">
+            Dashboard
+          </p>
+          <h2 class="mt-1 text-xl font-bold text-gray-900 sm:text-2xl">Menu</h2>
+        </div>
+
+        <div class="space-y-8 px-5 py-6 sm:px-6">
+          <div>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500 sm:text-sm">
+              User options
+            </h3>
+            <nav class="mt-3 space-y-3">
+              <a
+                href="#"
+                class="flex w-full items-center justify-center rounded-lg bg-blue-500 px-4 py-3 text-center text-base font-semibold text-white shadow-sm transition-colors hover:bg-blue-600 sm:text-lg"
+              >
+                View bookings
+              </a>
+            </nav>
+          </div>
+
+          <div class="border-t border-gray-200 pt-6">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500 sm:text-sm">
+              Admin options
+            </h3>
+            <p class="mt-2 text-sm leading-relaxed text-gray-600">
+              Hide this section later based on user role in your app.
+            </p>
+            <nav class="mt-4 space-y-3">
+              <a
+                href="#"
+                class="flex w-full items-center justify-center rounded-lg bg-blue-500 px-4 py-3 text-center text-base font-semibold text-white shadow-sm transition-colors hover:bg-blue-600 sm:text-lg"
+              >
+                Create flight
+              </a>
+              <a
+                href="./flights.html"
+                class="flex w-full items-center justify-center rounded-lg bg-blue-500 px-4 py-3 text-center text-base font-semibold text-white shadow-sm transition-colors hover:bg-blue-600 sm:text-lg"
+              >
+                Update flights
+              </a>
+              <a
+                href="#"
+                class="flex w-full items-center justify-center rounded-lg bg-blue-500 px-4 py-3 text-center text-base font-semibold text-white shadow-sm transition-colors hover:bg-blue-600 sm:text-lg"
+              >
+                Manage users
+              </a>
+              <a
+                href="#"
+                class="flex w-full items-center justify-center rounded-lg bg-blue-500 px-4 py-3 text-center text-base font-semibold text-white shadow-sm transition-colors hover:bg-blue-600 sm:text-lg"
+              >
+                View bookings
+              </a>
+            </nav>
+          </div>
+        </div>
+      </aside>
+
+      <main class="min-w-0 flex-1">
+        <section class="overflow-hidden rounded-2xl border border-blue-200 bg-white shadow-lg">
+          <div
+            class="bg-gradient-to-r from-blue-900 via-blue-800 to-indigo-700 px-5 py-6 text-white sm:px-8 sm:py-8"
+          >
+            <p class="text-xs font-semibold uppercase tracking-widest text-blue-200 sm:text-sm">
+              Your account
+            </p>
+            <h2 class="mt-2 text-2xl font-bold sm:text-3xl lg:text-4xl">Profile</h2>
+            <p class="mt-2 max-w-2xl text-sm leading-relaxed text-blue-100 sm:text-base">
+              Same fields as signup: name, email, passwords, age, address, role. Connect “Save
+              changes” to your API when ready.
+            </p>
+          </div>
+
+          <form action="#" method="post" class="space-y-8 bg-gray-50 p-5 sm:p-8">
+            <div
+              class="flex flex-col gap-6 rounded-xl border border-indigo-100 bg-white p-5 shadow-sm sm:flex-row sm:items-start sm:p-6"
+            >
+              <div class="flex-shrink-0">
+                <p class="mb-2 text-xs font-semibold uppercase tracking-widest text-blue-600 sm:text-sm">
+                  Profile photo
+                </p>
+                <img
+                  src="../frontend/assets/default.jpg"
+                  alt="Profile"
+                  class="h-28 w-28 rounded-full border-4 border-blue-500 object-cover shadow-md ring-4 ring-blue-100 sm:h-32 sm:w-32"
+                />
+              </div>
+              <div class="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-2">
+                <div class="sm:col-span-2">
+                  <label
+                    for="profile-name"
+                    class="mb-1 block text-sm font-semibold text-blue-900 sm:text-base"
+                  >
+                    Name
+                  </label>
+                  <input
+                    id="profile-name"
+                    name="name"
+                    type="text"
+                    value="Jane Traveler"
+                    class="w-full rounded-lg border border-blue-200 bg-white px-4 py-3 text-base text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                  />
+                </div>
+
+                <div class="sm:col-span-2">
+                  <label
+                    for="profile-email"
+                    class="mb-1 block text-sm font-semibold text-blue-900 sm:text-base"
+                  >
+                    Email
+                  </label>
+                  <input
+                    id="profile-email"
+                    name="email"
+                    type="email"
+                    value="jane@example.com"
+                    class="w-full rounded-lg border border-blue-200 bg-white px-4 py-3 text-base text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                  />
+                </div>
+
+                <div class="sm:col-span-2">
+                  <label
+                    for="profile-password"
+                    class="mb-1 block text-sm font-semibold text-blue-900 sm:text-base"
+                  >
+                    Password
+                  </label>
+                  <input
+                    id="profile-password"
+                    name="password"
+                    type="password"
+                    readonly
+                    tabindex="-1"
+                    placeholder="Password cannot be edited here"
+                    class="w-full cursor-not-allowed rounded-lg border border-gray-300 bg-gray-100 px-4 py-3 text-base text-gray-500"
+                  />
+                </div>
+
+                <div class="sm:col-span-2">
+                  <label
+                    for="profile-password-confirm"
+                    class="mb-1 block text-sm font-semibold text-blue-900 sm:text-base"
+                  >
+                    Confirm password
+                  </label>
+                  <input
+                    id="profile-password-confirm"
+                    name="passwordConfirm"
+                    type="password"
+                    readonly
+                    tabindex="-1"
+                    placeholder="Confirm password cannot be edited here"
+                    class="w-full cursor-not-allowed rounded-lg border border-gray-300 bg-gray-100 px-4 py-3 text-base text-gray-500"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    for="profile-age"
+                    class="mb-1 block text-sm font-semibold text-blue-900 sm:text-base"
+                  >
+                    Age
+                  </label>
+                  <input
+                    id="profile-age"
+                    name="age"
+                    type="number"
+                    min="18"
+                    value="28"
+                    class="w-full rounded-lg border border-blue-200 bg-white px-4 py-3 text-base text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    for="profile-role"
+                    class="mb-1 block text-sm font-semibold text-blue-900 sm:text-base"
+                  >
+                    Role
+                  </label>
+                  <input
+                    id="profile-role"
+                    name="role"
+                    type="text"
+                    value="user"
+                    class="w-full rounded-lg border border-blue-200 bg-white px-4 py-3 text-base text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                  />
+                </div>
+
+                <div class="sm:col-span-2">
+                  <label
+                    for="profile-address"
+                    class="mb-1 block text-sm font-semibold text-blue-900 sm:text-base"
+                  >
+                    Address
+                  </label>
+                  <input
+                    id="profile-address"
+                    name="address"
+                    type="text"
+                    value="123 Skyline Avenue, City, Country"
+                    class="w-full rounded-lg border border-blue-200 bg-white px-4 py-3 text-base text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="rounded-xl border border-blue-200 bg-gradient-to-r from-blue-50 to-white px-5 py-6 sm:px-6"
+            >
+              <button
+                type="submit"
+                disabled
+                class="inline-flex min-h-12 cursor-not-allowed items-center justify-center rounded-lg bg-gray-300 px-8 py-3 text-base font-semibold text-gray-500"
+              >
+                Save changes
+              </button>
+              <p class="mt-3 text-sm text-gray-600">
+                Disabled until you connect your update handler.
+              </p>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
