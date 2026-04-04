@@ -8,5 +8,7 @@ router.post('/signup', authController.signup);
 router.post('/login', authController.login);
 router.get('/logout', authController.authorize, authController.logOut);
 router.get('/me', authController.authorize, userController.getUser);
+router.patch('/update-me', authController.authorize, userController.uploadUserPhoto, userController.resizeUserPhoto, userController.updateUserData);
+router.post('/forgot-password', authController.forgotPassword);
 
 module.exports = router;

@@ -1,11 +1,13 @@
 import { useState } from "react"
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import sendErrorSuccessMessage from "../utils/sendErrorSuccessMessage";
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const {user, setUser} = useOutletContext();
+  const [emailSent, setEmailSent] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -34,6 +36,28 @@ const LoginPage = () => {
     } else {
       sendErrorSuccessMessage('error',data.message);
     }
+  }
+
+  const forgotPassword = async() => {
+    setEmailSent(true);
+    setLoading(true);
+
+    const res = await fetch(`${API_URL}/api/users/forgot-password`,{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email
+      })
+    });
+
+    const data = await res.json();
+    if(data.status === 'success') sendErrorSuccessMessage('success', `An email has been sent to ${email} for resetting password`);
+    else sendErrorSuccessMessage('error', data.message);
+
+    setEmailSent(false);
+    setLoading(false);
   }
 
   return (
@@ -82,11 +106,22 @@ const LoginPage = () => {
                 className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"
                 placeholder="Enter password"
               />
+              <div className="mt-2 text-left">
+                <button
+                  type="button"
+                  onClick={forgotPassword}
+                  disabled={loading}
+                  className={`${loading ? 'cursor-not-allowed' : 'cursor-pointer'} text-sm font-medium text-blue-600 underline decoration-blue-600/30 underline-offset-2 transition-colors hover:text-blue-800 hover:decoration-blue-800`}
+                >
+                  {emailSent ? 'Processing...' : 'Forgot Password?'}
+                </button>
+              </div>
             </div>
 
             <button
               type="submit"
-              className="cursor-pointer w-full rounded-lg bg-blue-600 px-4 py-3 text-md font-semibold text-white transition-colors duration-300 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-200"
+              disabled={loading}
+              className={`${loading ? 'cursor-not-allowed bg-gray-600' : 'cursor-pointer bg-[#1E3A8A] hover:bg-blue-700'} w-full rounded-lg px-4 py-3 text-md font-semibold text-white transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-200`}
             >
               Login
             </button>

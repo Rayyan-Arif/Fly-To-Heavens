@@ -56,7 +56,8 @@ const SignUpPage = () => {
           <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-blue-500">Get Started</p>
           <h2 className="mb-4 text-2xl font-bold text-gray-900 sm:text-3xl">Signup and start booking</h2>
           <p className="text-base leading-relaxed text-gray-500">
-            Create your account to search flights, reserve seats, and manage trips easily.
+            Join us today and take control of your travel experience. Search flights, compare options, 
+            reserve seats, and manage your trips all in one place. Fast, simple, and designed for your convenience.
           </p>
         </div>
 
@@ -159,7 +160,7 @@ const SignUpPage = () => {
 
             <button
               type="submit"
-              className="cursor-pointer w-full rounded-lg border border-blue-900 bg-blue-900 px-4 py-3 text-md font-semibold text-white transition-colors duration-300 hover:bg-blue-950 focus:outline-none focus:ring-2 focus:ring-blue-200"
+              className="cursor-pointer w-full rounded-lg border border-blue-900 bg-[#1E3A8A] px-4 py-3 text-md font-semibold text-white transition-colors duration-300 hover:bg-blue-950 focus:outline-none focus:ring-2 focus:ring-blue-200"
             >
               Create New Account
             </button>

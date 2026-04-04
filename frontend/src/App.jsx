@@ -9,6 +9,7 @@ import getUserLoader from '../utils/getUserLoader';
 import FlightsPage from '../pages/FlightsPage';
 import FlightPage from '../pages/FlightPage';
 import ProfilePage from '../pages/ProfilePage';
+import ResetPasswordPage from '../pages/ResetPasswordPage';
 
 const App = () => {
   const router = createBrowserRouter(
@@ -21,6 +22,7 @@ const App = () => {
         <Route path='/flights' element={<FlightsPage />}/>
         <Route path='/flights/:slug' element={<FlightPage />}/> 
         <Route path='/me' element={<ProfilePage />}/>
+        <Route path='/reset-password/:token' element={<ResetPasswordPage />}/>
         <Route path='*' element={<NotFoundPage />}/>
       </Route>
     )

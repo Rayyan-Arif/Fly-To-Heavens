@@ -1,5 +1,6 @@
-import { useState } from "react"
-import { useOutletContext, Link } from "react-router-dom"
+import { useState, useEffect } from "react"
+import { useOutletContext, Link, useNavigate } from "react-router-dom"
+import sendErrorSuccessMessage from '../utils/sendErrorSuccessMessage'
 
 const ProfilePage = () => {
     const { user } = useOutletContext()
@@ -8,6 +9,41 @@ const ProfilePage = () => {
     const [email, setEmail] = useState(user?.email || '');
     const [age, setAge] = useState(user?.age || 0);
     const [address, setAddress] = useState(user?.address || '');
+    const [photo, setPhoto] = useState(user?.photo || '');
+    const [password, setPassword] = useState('');
+    const [passwordConfirm, setPasswordConfirm] = useState('');
+
+    const API_URL = import.meta.env.VITE_API_URL;
+    const navigate = useNavigate();
+
+    const updateUserData = async () => {
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('age', age);
+        formData.append('address', address);
+        formData.append('photo', photo);
+
+        const res = await fetch(`${API_URL}/api/users/update-me`,{
+            method: 'PATCH',
+            credentials: 'include',
+            body: formData
+        });
+
+        if(res.status == 401) sendErrorSuccessMessage('error', 'Please log in before this operation!');
+        if(res.status == 200) {
+            sendErrorSuccessMessage('success', 'Changes saved! Reloading....');
+            setIsFieldChanged(false);
+            setTimeout(() => {navigate(0)}, 3000);
+        }
+    }
+
+    useEffect(() => {
+        if(!user){
+            navigate('/login');
+            return;
+        }
+    },[])
 
     return (
         <section
@@ -88,7 +124,13 @@ const ProfilePage = () => {
                 <h2 className="mt-2 text-2xl font-bold sm:text-3xl lg:text-4xl">Profile</h2>
             </div>
 
-            <form action="#" method="post" className="space-y-8 bg-gray-50 p-5 sm:p-8">
+            <form className="space-y-8 bg-gray-50 p-5 sm:p-8" 
+                onSubmit={
+                (e) => {
+                    e.preventDefault();
+                    updateUserData();
+                }}>
+
                 <div
                 className="flex flex-col gap-6 rounded-xl border border-indigo-100 bg-white p-5 shadow-sm sm:flex-row sm:items-start sm:p-6"
                 >
@@ -107,6 +149,10 @@ const ProfilePage = () => {
                         name="photo"
                         accept="image/*"
                         className="sr-only"
+                        onChange={(e) => {
+                            setIsFieldChanged(true);
+                            setPhoto(e.target.files[0]);
+                        }}
                     />
                     <span
                         className="inline-flex min-h-10 items-center justify-center rounded-lg border-2 border-blue-900 bg-white px-4 py-2 text-sm font-semibold text-blue-900 shadow-sm transition-colors hover:bg-gray-50 focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-blue-500"
@@ -158,16 +204,50 @@ const ProfilePage = () => {
                     <label
                         className="mb-1 block text-sm font-semibold text-blue-900 sm:text-base"
                     >
-                        Password
+                        Current Password
+                    </label>
+                    <input
+                        id="pd-current-password"
+                        name="current-password"
+                        type="password"
+                        value={password}
+                        onChange={(e) => {setPassword(e.target.value)}}
+                        placeholder="••••••••"
+                        className="w-full rounded-lg border border-gray-300 bg-gray-100 px-4 py-3 text-base text-gray-600"
+                    />
+                    </div>
+
+                    <div className="sm:col-span-2">
+                    <label
+                        className="mb-1 block text-sm font-semibold text-blue-900 sm:text-base"
+                    >
+                        Change Password
                     </label>
                     <input
                         id="pd-password"
                         name="password"
                         type="password"
-                        readOnly
-                        tabIndex="-1"
+                        value={password}
+                        onChange={(e) => {setPassword(e.target.value)}}
                         placeholder="••••••••"
-                        className="w-full cursor-not-allowed rounded-lg border border-gray-300 bg-gray-100 px-4 py-3 text-base text-gray-600"
+                        className="w-full rounded-lg border border-gray-300 bg-gray-100 px-4 py-3 text-base text-gray-600"
+                    />
+                    </div>
+
+                    <div className="sm:col-span-2">
+                    <label
+                        className="mb-1 block text-sm font-semibold text-blue-900 sm:text-base"
+                    >
+                        Confirm New Password
+                    </label>
+                    <input
+                        id="pd-password-confirm"
+                        name="password-confirm"
+                        type="password"
+                        value={passwordConfirm}
+                        onChange={(e) => {setPasswordConfirm(e.target.value)}}
+                        placeholder="••••••••"
+                        className="w-full rounded-lg border border-gray-300 bg-gray-100 px-4 py-3 text-base text-gray-600"
                     />
                     <button
                         type="button"
@@ -223,7 +303,7 @@ const ProfilePage = () => {
                 >
                 <button
                     type="submit"
-                    disabled={isFieldChanged}
+                    disabled={!isFieldChanged}
                     className={`inline-flex min-h-12 ${isFieldChanged ? 'bg-[#1E3A8A] text-white cursor-pointer hover:bg-[#172554]' : 'cursor-not-allowed bg-gray-300 text-gray-500'} items-center justify-center rounded-lg px-8 py-3 text-base font-semibold`}
                 >
                     Save changes

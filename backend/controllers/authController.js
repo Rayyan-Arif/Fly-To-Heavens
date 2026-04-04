@@ -2,6 +2,7 @@ const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 const { promisify } = require('util');
 const AppError = require('../utils/appError');
+const sendEmail = require('../utils/email');
 
 const signToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -108,6 +109,75 @@ exports.logOut = (req, res, next) => {
             message: 'user logged out succesfully!'
         });
     } catch(err){
+        next(err);
+    }
+}
+
+exports.forgotPassword = async (req, res, next) => {
+    let user;
+    try{
+        user = await User.findOne({email: req.body.email});
+
+        if(!user){
+            return next(new AppError('Invalid email!', 404));
+        }
+
+        const resetToken = user.createPasswordResetToken();
+
+        const protocol = req.protocol;
+        let host = req.get('host');
+        host = host.includes('127.0.0.1') ? host.replace('127.0.0.1','localhost') : host;
+
+        const html = `
+            <div style="font-family: Arial, sans-serif; background-color: #1E3A8A; padding: 40px 0; text-align: center;">
+            <div style="max-width: 500px; margin: auto; background-color: #ffffff; border-radius: 8px; padding: 30px; text-align: center;">
+
+                <h2 style="color: #1E3A8A; margin-bottom: 20px;">Reset Your Password</h2>
+
+                <p style="color: #333333; font-size: 16px; line-height: 1.5; margin-bottom: 30px;">
+                You requested to reset your password. Click the button below to set a new password.
+                </p>
+
+                <a href="${process.env.FRONTEND_URL}/reset-password/${resetToken}"
+                style="
+                    display: inline-block;
+                    padding: 12px 25px;
+                    background-color: #1E3A8A;
+                    color: #ffffff;
+                    text-decoration: none;
+                    font-weight: bold;
+                    border-radius: 5px;
+                    font-size: 16px;
+                ">
+                Reset Password
+                </a>
+
+                <p style="margin-top: 25px; font-size: 12px; color: #666666; line-height: 1.4;">
+                This link will expire in 10 minutes. If you did not request this, please ignore this email.
+                </p>
+                
+            </div>
+            </div>
+        `;
+
+        const options = {
+            to: user.email,
+            from: `Fly-To-Heavens Support <${process.env.EMAIL_USER}>`,
+            subject: 'Password Reset Request',
+            html: html
+        }
+
+        await sendEmail(options);
+
+        res.status(200).send({
+            status: 'success',
+            message: 'token sent to email'
+        });
+    } catch(err){
+        if(user){
+            user.passwordResetToken = undefined;
+            user.passwordResetTokenExpires = undefined;
+        }
         next(err);
     }
 }
