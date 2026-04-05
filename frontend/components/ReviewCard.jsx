@@ -1,4 +1,6 @@
-const ReviewCard = ({review}) => {
+import defaultAvatar from "../assets/default.jpg"
+
+const ReviewCard = ({ review }) => {
     const numbers = [1,2,3,4,5];
 
     return (
@@ -20,9 +22,16 @@ const ReviewCard = ({review}) => {
             >
                 {review.review}
             </p>
-            <p className="text-sm font-semibold text-[#1E3A8A] sm:text-base">
-                {review.user?.name?.toUpperCase()}
-            </p>
+            <div className="flex min-w-0 items-center gap-2 sm:gap-2.5">
+                <img
+                    src={review.user?.photo}
+                    alt=""
+                    className="h-8 w-8 shrink-0 rounded-full object-cover ring-2 ring-blue-100 sm:h-9 sm:w-9"
+                />
+                <p className="min-w-0 truncate text-sm font-semibold text-[#1E3A8A] sm:text-base">
+                    {review.user?.name?.toUpperCase()}
+                </p>
+            </div>
         </article>
     )
 }

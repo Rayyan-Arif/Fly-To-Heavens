@@ -3,15 +3,17 @@ import { useOutletContext, Link, useNavigate } from "react-router-dom"
 import sendErrorSuccessMessage from '../utils/sendErrorSuccessMessage'
 
 const ProfilePage = () => {
-    const { user } = useOutletContext()
+    const { user, setUser } = useOutletContext()
     const [isFieldChanged, setIsFieldChanged] = useState(false);
     const [name, setName] = useState(user?.name || '');
     const [email, setEmail] = useState(user?.email || '');
     const [age, setAge] = useState(user?.age || 0);
     const [address, setAddress] = useState(user?.address || '');
     const [photo, setPhoto] = useState(user?.photo || '');
+    const [passwordCurrent, setPasswordCurrent] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const API_URL = import.meta.env.VITE_API_URL;
     const navigate = useNavigate();
@@ -36,6 +38,35 @@ const ProfilePage = () => {
             setIsFieldChanged(false);
             setTimeout(() => {navigate(0)}, 3000);
         }
+    }
+
+    const updatePassword = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+
+        const res = await fetch(`${API_URL}/api/users/update-password`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                passwordCurrent,
+                password,
+                passwordConfirm
+            })
+        });
+
+        const data = await res.json();
+
+        if(data.status === 'success') sendErrorSuccessMessage('success','Password updated succesfully!');
+        else sendErrorSuccessMessage('error', data.message);
+
+        setPasswordCurrent('');
+        setPassword('');
+        setPasswordConfirm('');
+        setLoading(false);
+        setUser(data.data?.user);
     }
 
     useEffect(() => {
@@ -71,6 +102,12 @@ const ProfilePage = () => {
                         className="flex w-full items-center justify-center rounded-lg bg-[#1E3A8A] px-4 py-3 text-center text-base font-semibold text-white shadow-sm transition-colors hover:bg-[#172554] sm:text-lg"
                     >
                         View bookings
+                    </Link>
+                    <Link
+                        to="/me/close-account"
+                        className="flex w-full items-center justify-center rounded-lg bg-[#1E3A8A] px-4 py-3 text-center text-base font-semibold text-white shadow-sm transition-colors hover:bg-[#172554] sm:text-lg"
+                    >
+                        Close account
                     </Link>
                     </nav>
                 </div>
@@ -210,8 +247,8 @@ const ProfilePage = () => {
                         id="pd-current-password"
                         name="current-password"
                         type="password"
-                        value={password}
-                        onChange={(e) => {setPassword(e.target.value)}}
+                        value={passwordCurrent}
+                        onChange={(e) => {setPasswordCurrent(e.target.value)}}
                         placeholder="••••••••"
                         className="w-full rounded-lg border border-gray-300 bg-gray-100 px-4 py-3 text-base text-gray-600"
                     />
@@ -221,7 +258,7 @@ const ProfilePage = () => {
                     <label
                         className="mb-1 block text-sm font-semibold text-blue-900 sm:text-base"
                     >
-                        Change Password
+                        New Password
                     </label>
                     <input
                         id="pd-password"
@@ -251,9 +288,11 @@ const ProfilePage = () => {
                     />
                     <button
                         type="button"
-                        className="mt-4 inline-flex min-h-12 cursor-pointer items-center justify-center rounded-lg bg-[#1E3A8A] px-8 py-3 text-base font-semibold text-white transition-colors hover:bg-[#172554] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                        onClick={updatePassword}
+                        disabled={loading}
+                        className={`${loading ? 'cursor-not-allowed bg-gray-600' : 'cursor-pointer bg-[#1E3A8A] hover:bg-blue-700'} mt-4 inline-flex min-h-12 items-center justify-center rounded-lg px-8 py-3 text-base font-semibold text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500`}
                     >
-                        Reset password
+                        Update password
                     </button>
                     </div>
 

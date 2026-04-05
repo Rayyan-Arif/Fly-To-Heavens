@@ -1,5 +1,6 @@
 import { Link, useOutletContext } from "react-router-dom"
 import sendErrorSuccessMessage from '../utils/sendErrorSuccessMessage'
+import logo from '../logo.png'
 
 const Navbar = ({isLoggedIn, user, setUser}) => {
   let username = user?.name;
@@ -29,8 +30,15 @@ const Navbar = ({isLoggedIn, user, setUser}) => {
         >
           <Link
             to="/"
-            className="text-center text-base font-semibold leading-snug tracking-tight text-white transition-colors hover:text-[#3B82F6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3B82F6] sm:text-left sm:text-lg md:text-3xl"
-            >Fly To Heavens</Link>
+            className="flex items-center justify-center gap-2 text-center text-base font-semibold leading-snug tracking-tight text-white transition-colors hover:text-[#3B82F6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3B82F6] sm:justify-start sm:text-left sm:text-lg md:gap-3 md:text-3xl"
+          >
+            <img
+              src={logo}
+              alt=""
+              className="h-8 w-auto shrink-0 object-contain sm:h-9 md:h-15"
+            />
+            <span>Fly To Heavens</span>
+          </Link>
 
           <div
             className="flex w-full items-center justify-center gap-2 sm:w-auto sm:justify-end sm:gap-3 md:gap-4"

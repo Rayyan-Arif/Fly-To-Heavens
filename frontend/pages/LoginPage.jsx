@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import sendErrorSuccessMessage from "../utils/sendErrorSuccessMessage";
 
@@ -59,6 +59,20 @@ const LoginPage = () => {
     setEmailSent(false);
     setLoading(false);
   }
+
+  useEffect(() => {
+    const handleStorage = (e) => {
+      if(e.key === 'passwordResetDone' && e.newValue === "true"){
+        localStorage.removeItem("passwordResetDone");
+        window.close();
+      }
+    }
+
+    window.addEventListener("storage", handleStorage);
+
+    //this return runs only when component unmounts (removed from screen) or rerendered
+    return () => window.removeEventListener("storage", handleStorage);
+  },[]);
 
   return (
     <main className="mx-auto flex w-full max-w-6xl items-center px-4 py-10 sm:px-6 lg:px-8 lg:py-16">

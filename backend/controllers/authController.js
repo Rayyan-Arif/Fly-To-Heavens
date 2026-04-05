@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const { promisify } = require('util');
 const AppError = require('../utils/appError');
 const sendEmail = require('../utils/email');
+const crypto = require('crypto');
 
 const signToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -20,11 +21,14 @@ const createSendToken = (res, user, statusCode) => {
 
     res.cookie('jwt', token, cookieOptions);
 
+    const newUser = {...user};
+    newUser._doc.password = ''
+
     res.status(statusCode).send({
         status: 'success',
         token,
         data: {
-            user
+            user: newUser._doc
         }
     });
 }
@@ -124,10 +128,6 @@ exports.forgotPassword = async (req, res, next) => {
 
         const resetToken = user.createPasswordResetToken();
 
-        const protocol = req.protocol;
-        let host = req.get('host');
-        host = host.includes('127.0.0.1') ? host.replace('127.0.0.1','localhost') : host;
-
         const html = `
             <div style="font-family: Arial, sans-serif; background-color: #1E3A8A; padding: 40px 0; text-align: center;">
             <div style="max-width: 500px; margin: auto; background-color: #ffffff; border-radius: 8px; padding: 30px; text-align: center;">
@@ -168,6 +168,7 @@ exports.forgotPassword = async (req, res, next) => {
         }
 
         await sendEmail(options);
+        await user.save({validateBeforeSave: false});
 
         res.status(200).send({
             status: 'success',
@@ -178,6 +179,59 @@ exports.forgotPassword = async (req, res, next) => {
             user.passwordResetToken = undefined;
             user.passwordResetTokenExpires = undefined;
         }
+        next(err);
+    }
+}
+
+exports.resetPassword = async(req, res, next) => {
+    try{
+        const token = req.params.token;
+
+        if(!token){
+            return next(new AppError('token not found!', 404));
+        }
+
+        const hashedToken = crypto.createHash('sha256').update(token).digest('hex');
+
+        const user = await User.findOne({passwordResetToken: hashedToken, passwordResetTokenExpires: {$gt: Date.now()}}).select('+password');
+
+        if(!user){
+            return next(new AppError('token not found or expired', 404));
+        }
+
+        user.password = req.body.password;
+        user.passwordConfirm = req.body.passwordConfirm;
+
+        // user.passwordResetToken = undefined;
+        // user.passwordResetTokenExpires = undefined;
+
+        await user.save();
+
+        createSendToken(res, user, 200);
+    } catch(err){
+        next(err);
+    }
+}
+
+exports.updatePassword = async(req, res, next) => {
+    try{
+        const {passwordCurrent, password, passwordConfirm} = req.body;
+
+        const user = await User.findOne({email: req.user.email}).select('+password');
+
+        const isPassCorrect = await user.correctPassword(passwordCurrent, user.password);
+
+        if(!isPassCorrect){
+            return next(new AppError('Invalid current password!', 401));
+        }
+
+        user.password = password;
+        user.passwordConfirm = passwordConfirm;
+
+        await user.save();
+
+        createSendToken(res, user, 200);
+    } catch(err){
         next(err);
     }
 }

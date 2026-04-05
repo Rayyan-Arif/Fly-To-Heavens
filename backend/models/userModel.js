@@ -62,12 +62,18 @@ userSchema.pre('save', async function(){
     this.passwordConfirm = undefined;
 });
 
+userSchema.pre('save', function(){
+    if(!this.isModified('password') || this.isNew) return;
+    
+    this.passwordChangedAt = Date.now() - 1000;
+});
+
 userSchema.methods.createPasswordResetToken = function(){
     const resetToken = crypto.randomBytes(32).toString('hex');
 
     this.passwordResetToken = crypto.createHash('sha256').update(resetToken).digest('hex');
 
-    this.passwordResetTokenExpires = Date.now() + 10 * 60 * 1000;
+    this.passwordResetTokenExpires = new Date(Date.now() + 10 * 60 * 1000);
 
     return resetToken;
 }
@@ -78,8 +84,8 @@ userSchema.methods.correctPassword = async(enteredPassword, actualPassword) => {
 
 userSchema.methods.isPasswordChanged = function(jwtAssignedAt){
     if(this.passwordChangedAt){
-        const changeTime = parseInt(this.passwordChangedAt.getTime() * 1000 , 10);
-        return changeTime > jwtAssignedAt;
+        const changeTime = parseInt(this.passwordChangedAt.getTime() , 10);
+        return changeTime > jwtAssignedAt * 1000;
     }
 }
 
