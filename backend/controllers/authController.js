@@ -196,14 +196,14 @@ exports.resetPassword = async(req, res, next) => {
         const user = await User.findOne({passwordResetToken: hashedToken, passwordResetTokenExpires: {$gt: Date.now()}}).select('+password');
 
         if(!user){
-            return next(new AppError('token not found or expired', 404));
+            return next(new AppError('Validation failed! Try again later!', 404));
         }
 
         user.password = req.body.password;
         user.passwordConfirm = req.body.passwordConfirm;
 
-        // user.passwordResetToken = undefined;
-        // user.passwordResetTokenExpires = undefined;
+        user.passwordResetToken = undefined;
+        user.passwordResetTokenExpires = undefined;
 
         await user.save();
 
@@ -234,4 +234,41 @@ exports.updatePassword = async(req, res, next) => {
     } catch(err){
         next(err);
     }
+}
+
+exports.closeAccount = async(req, res, next) => {
+    try{
+        const password = req.body.password;
+        
+        const user = await User.findOne({email: req.user.email}).select('+password');
+
+        if(!user){
+            return next(new AppError('User account does not exist', 404));
+        }
+
+        const isPassCorrect = await user.correctPassword(password, user.password);
+
+        if(!isPassCorrect){
+            return next(new AppError('Password is not correct!', 401));
+        }
+
+        await User.deleteOne({email: req.user.email});
+
+        res.clearCookie('jwt',{
+            httpOnly: true
+        });
+
+        res.status(204).send({
+            status: 'success',
+            message: 'user account closed successfully'
+        });
+    } catch(err){
+        next(err);
+    }
+}
+
+exports.restrictTo = (req, res, next) => {
+    if(req.user.role !== 'admin')
+        return next(new AppError('Permissible for Admin only!', 401));
+    next();
 }

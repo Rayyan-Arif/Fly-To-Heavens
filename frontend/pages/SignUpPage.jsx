@@ -10,7 +10,7 @@ const SignUpPage = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [address, setAddress] = useState('');
-  const [age, setAge] = useState(0);
+  const [age, setAge] = useState('');
 
   const navigate = useNavigate();
 

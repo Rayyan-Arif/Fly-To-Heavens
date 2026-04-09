@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fly To Heavens | Create Flight</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+  </head>
+  <body class="min-h-screen bg-gray-50 text-gray-900">
+    <header class="border-b border-gray-200 bg-blue-900 text-white shadow-sm">
+      <div
+        class="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8"
+      >
+        <h1 class="text-xl font-semibold tracking-tight sm:text-2xl">
+          Fly To Heavens
+        </h1>
+        <p class="text-sm text-blue-200 sm:text-base">Create flight</p>
+      </div>
+    </header>
+
+    <main class="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-16">
+      <section class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+        <div class="bg-blue-900 px-5 py-6 text-white sm:px-8 sm:py-8">
+          <p class="text-xs font-semibold uppercase tracking-widest text-blue-200 sm:text-sm">
+            Admin
+          </p>
+          <h2 class="mt-2 text-2xl font-bold sm:text-3xl">Create a new flight</h2>
+          <p class="mt-2 text-sm text-blue-100 sm:text-base">
+            Fill all required details based on your flight schema.
+          </p>
+        </div>
+
+        <form action="#" method="post" class="p-5 sm:p-8">
+          <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+            <!-- Left: photo -->
+            <div class="lg:col-span-1">
+              <div class="rounded-xl border border-gray-200 bg-gray-50 p-4 sm:p-5">
+                <label class="mb-2 block text-sm font-semibold text-blue-900">
+                  Flight photo
+                </label>
+                <img
+                  src="../frontend/assets/default.jpg"
+                  alt="Flight preview"
+                  class="mb-4 h-44 w-full rounded-lg border border-gray-200 object-cover"
+                />
+                <input
+                  type="file"
+                  name="photo"
+                  accept="image/*"
+                  class="block w-full cursor-pointer rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 file:mr-3 file:rounded-md file:border-0 file:bg-blue-50 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-blue-700 hover:file:bg-blue-100"
+                />
+              </div>
+            </div>
+
+            <!-- Right: flight details -->
+            <div class="lg:col-span-2">
+              <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div>
+                  <label for="departure" class="mb-1 block text-sm font-medium text-gray-700">
+                    Departure
+                  </label>
+                  <input
+                    id="departure"
+                    name="departure"
+                    type="text"
+                    required
+                    placeholder="e.g., Lahore"
+                    class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                  />
+                </div>
+
+                <div>
+                  <label for="arrival" class="mb-1 block text-sm font-medium text-gray-700">
+                    Arrival
+                  </label>
+                  <input
+                    id="arrival"
+                    name="arrival"
+                    type="text"
+                    required
+                    placeholder="e.g., Istanbul"
+                    class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                  />
+                </div>
+
+                <div>
+                  <label for="duration" class="mb-1 block text-sm font-medium text-gray-700">
+                    Duration (minutes)
+                  </label>
+                  <input
+                    id="duration"
+                    name="duration"
+                    type="number"
+                    min="0"
+                    required
+                    placeholder="e.g., 180"
+                    class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                  />
+                </div>
+
+                <div>
+                  <label for="price" class="mb-1 block text-sm font-medium text-gray-700">
+                    Price
+                  </label>
+                  <input
+                    id="price"
+                    name="price"
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    required
+                    placeholder="e.g., 199.99"
+                    class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                  />
+                </div>
+
+                <div>
+                  <label for="date" class="mb-1 block text-sm font-medium text-gray-700">
+                    Date
+                  </label>
+                  <input
+                    id="date"
+                    name="date"
+                    type="date"
+                    required
+                    class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                  />
+                </div>
+
+                <div>
+                  <label for="time" class="mb-1 block text-sm font-medium text-gray-700">
+                    Time
+                  </label>
+                  <input
+                    id="time"
+                    name="time"
+                    type="time"
+                    required
+                    class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                  />
+                </div>
+
+                <div class="sm:col-span-2">
+                  <label for="numberOfSeats" class="mb-1 block text-sm font-medium text-gray-700">
+                    Number of seats
+                  </label>
+                  <input
+                    id="numberOfSeats"
+                    name="numberOfSeats"
+                    type="number"
+                    min="1"
+                    required
+                    placeholder="e.g., 50"
+                    class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                  />
+                </div>
+              </div>
+
+              <div class="mt-5 rounded-xl border border-gray-200 bg-gray-50 p-4 sm:p-5">
+                <p class="mb-3 text-sm font-semibold text-blue-900">
+                  Stops (array of cities)
+                </p>
+                <div class="space-y-3">
+                  <input
+                    type="text"
+                    name="stops[]"
+                    placeholder="Stop 1 city"
+                    class="w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                  />
+                  <input
+                    type="text"
+                    name="stops[]"
+                    placeholder="Stop 2 city"
+                    class="w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                  />
+                  <input
+                    type="text"
+                    name="stops[]"
+                    placeholder="Stop 3 city"
+                    class="w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 border-t border-gray-200 pt-6">
+            <button
+              type="submit"
+              class="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-blue-600 px-8 py-3 text-base font-semibold text-white transition-colors hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-200"
+            >
+              Create flight
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
+

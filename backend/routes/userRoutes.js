@@ -12,5 +12,6 @@ router.patch('/update-me', authController.authorize, userController.uploadUserPh
 router.post('/forgot-password', authController.forgotPassword);
 router.patch('/reset-password/:token', authController.resetPassword);
 router.patch('/update-password', authController.authorize, authController.updatePassword);
+router.delete('/close-account', authController.authorize, authController.closeAccount);
 
 module.exports = router;

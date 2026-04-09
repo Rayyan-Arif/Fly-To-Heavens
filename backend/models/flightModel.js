@@ -51,6 +51,8 @@ flightSchema.pre('save', function(){
         lower: true,
         strict: true
     });
+
+    if(this.isNew) this.availableSeats = this.numberOfSeats;
 });
 
 const flightModel = new mongoose.model('Flight', flightSchema);

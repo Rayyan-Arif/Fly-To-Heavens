@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema({
     },
     photo: {
         type: String,
-        default: '../assets/default.jpg'
+        default: `/assets/default.jpg`
     },
     address: {
         type: String,

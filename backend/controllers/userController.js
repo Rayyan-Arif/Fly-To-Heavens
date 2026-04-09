@@ -1,7 +1,6 @@
 const User = require('../models/userModel');
 const AppError = require('../utils/appError');
-const multer = require('multer');
-const sharp = require('sharp');
+const imageCoverHandler = require('../utils/imageCoverHandler');
 
 exports.getUser = (req, res, next) => {
     try{
@@ -16,40 +15,9 @@ exports.getUser = (req, res, next) => {
     }
 }
 
-const multerStorage = multer.memoryStorage();
+exports.uploadUserPhoto = imageCoverHandler.upload.single('photo');
 
-const multerFilter = (req, file, cb) => {
-    if(file.mimetype.startsWith('image')){
-        cb(null, true);
-    } else{
-        cb(new AppError('not an image', 400), false);
-    }
-}
-
-const upload = multer({
-    storage: multerStorage,
-    fileFilter: multerFilter
-});
-
-exports.uploadUserPhoto = upload.single('photo');
-
-exports.resizeUserPhoto = async(req, res, next) => {
-    if(!req.file) return next();
-
-    req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
-    
-    try{
-        await sharp(req.file.buffer)
-        .resize(500, 500)
-        .toFormat('jpeg')
-        .jpeg({quality: 90})
-        .toFile(`${__dirname}/../../frontend/assets/users_img/${req.file.filename}`); 
-    } catch(err){
-        next(err);
-    }
-
-    next();
-}
+exports.resizeUserPhoto = imageCoverHandler.resizePhoto('user',500,500,'users');
 
 exports.updateUserData = async (req, res, next) => {
     try{
@@ -64,7 +32,7 @@ exports.updateUserData = async (req, res, next) => {
             address: req.body.address
         }
 
-        if(req.file) filteredBody.photo = `../assets/users_img/${req.file.filename}`;
+        if(req.file) filteredBody.photo = `/assets/users_img/${req.file.filename}`;
 
         await User.findByIdAndUpdate(req.user.id, filteredBody);
 

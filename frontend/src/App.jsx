@@ -10,6 +10,8 @@ import FlightsPage from '../pages/FlightsPage';
 import FlightPage from '../pages/FlightPage';
 import ProfilePage from '../pages/ProfilePage';
 import ResetPasswordPage from '../pages/ResetPasswordPage';
+import CreateFlightPage from '../pages/CreateFlightPage';
+import UpdateFlightPage from '../pages/UpdateFlightPage';
 
 const App = () => {
   const router = createBrowserRouter(
@@ -23,6 +25,8 @@ const App = () => {
         <Route path='/flights/:slug' element={<FlightPage />}/> 
         <Route path='/me' element={<ProfilePage />}/>
         <Route path='/reset-password/:token' element={<ResetPasswordPage />}/>
+        <Route path='/admin/create-flight' element={<CreateFlightPage />}/>
+        <Route path='/flights/update/:slug' element={<UpdateFlightPage />}/>
         <Route path='*' element={<NotFoundPage />}/>
       </Route>
     )
