@@ -147,7 +147,6 @@ Multi-Step Flow:
 
 End of Documentation
 
-
 PAGES:
 1. landing page
 2. login / signup page

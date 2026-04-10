@@ -12,6 +12,7 @@ import ProfilePage from '../pages/ProfilePage';
 import ResetPasswordPage from '../pages/ResetPasswordPage';
 import CreateFlightPage from '../pages/CreateFlightPage';
 import UpdateFlightPage from '../pages/UpdateFlightPage';
+import UsersPage from '../pages/UsersPage';
 
 const App = () => {
   const router = createBrowserRouter(
@@ -27,6 +28,7 @@ const App = () => {
         <Route path='/reset-password/:token' element={<ResetPasswordPage />}/>
         <Route path='/admin/create-flight' element={<CreateFlightPage />}/>
         <Route path='/flights/update/:slug' element={<UpdateFlightPage />}/>
+        <Route path='/admin/manage-users' element={<UsersPage />}/>
         <Route path='*' element={<NotFoundPage />}/>
       </Route>
     )

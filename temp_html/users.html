@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fly To Heavens | Users</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+  </head>
+  <body class="min-h-screen bg-gray-50 text-gray-900">
+    <header class="border-b border-gray-200 bg-blue-900 text-white shadow-sm">
+      <div
+        class="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8"
+      >
+        <h1 class="text-xl font-semibold tracking-tight sm:text-2xl">
+          Fly To Heavens
+        </h1>
+        <p class="text-sm text-blue-200 sm:text-base">Manage users</p>
+      </div>
+    </header>
+
+    <main class="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-16">
+      <section
+        class="mb-8 rounded-2xl border border-blue-100 bg-gradient-to-r from-blue-900 to-blue-700 px-5 py-6 text-white shadow-sm sm:px-7 sm:py-7"
+      >
+        <p class="text-xs font-semibold uppercase tracking-widest text-blue-200 sm:text-sm">
+          Admin
+        </p>
+        <h2 class="mt-2 text-2xl font-bold sm:text-3xl">Users directory</h2>
+        <p class="mt-2 text-sm text-blue-100 sm:text-base">
+          View users and remove accounts if needed.
+        </p>
+      </section>
+
+      <section class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- User card -->
+        <article
+          class="group rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+        >
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex min-w-0 items-center gap-3">
+              <img
+                src="../frontend/assets/default.jpg"
+                alt="User profile"
+                class="h-14 w-14 rounded-full border-2 border-blue-100 object-cover"
+              />
+              <div class="min-w-0">
+                <p class="truncate text-base font-bold text-gray-900">Jonny Crew</p>
+                <p class="truncate text-sm text-blue-700">jonny@example.com</p>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              aria-label="Delete user"
+              class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-red-200 bg-red-50 text-red-600 transition-colors hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-200"
+            >
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 6h18"></path>
+                <path d="M8 6V4h8v2"></path>
+                <path d="M19 6l-1 14H6L5 6"></path>
+                <path d="M10 11v6"></path>
+                <path d="M14 11v6"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="mt-4 rounded-xl border border-gray-100 bg-gray-50 px-4 py-3">
+            <p class="text-xs font-semibold uppercase tracking-widest text-gray-500">
+              Address
+            </p>
+            <p class="mt-1 text-sm leading-relaxed text-gray-700">
+              123 Skyline Avenue, Lahore, Pakistan
+            </p>
+          </div>
+        </article>
+
+        <article class="group rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex min-w-0 items-center gap-3">
+              <img src="../frontend/assets/default.jpg" alt="User profile" class="h-14 w-14 rounded-full border-2 border-blue-100 object-cover" />
+              <div class="min-w-0">
+                <p class="truncate text-base font-bold text-gray-900">Sarah Ahmed</p>
+                <p class="truncate text-sm text-blue-700">sarah.ahmed@example.com</p>
+              </div>
+            </div>
+            <button type="button" aria-label="Delete user" class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-red-200 bg-red-50 text-red-600 transition-colors hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-200">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6"></path><path d="M14 11v6"></path>
+              </svg>
+            </button>
+          </div>
+          <div class="mt-4 rounded-xl border border-gray-100 bg-gray-50 px-4 py-3">
+            <p class="text-xs font-semibold uppercase tracking-widest text-gray-500">Address</p>
+            <p class="mt-1 text-sm leading-relaxed text-gray-700">45 River Street, Karachi, Pakistan</p>
+          </div>
+        </article>
+
+        <article class="group rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex min-w-0 items-center gap-3">
+              <img src="../frontend/assets/default.jpg" alt="User profile" class="h-14 w-14 rounded-full border-2 border-blue-100 object-cover" />
+              <div class="min-w-0">
+                <p class="truncate text-base font-bold text-gray-900">Michael Noor</p>
+                <p class="truncate text-sm text-blue-700">michael.noor@example.com</p>
+              </div>
+            </div>
+            <button type="button" aria-label="Delete user" class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-red-200 bg-red-50 text-red-600 transition-colors hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-200">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6"></path><path d="M14 11v6"></path>
+              </svg>
+            </button>
+          </div>
+          <div class="mt-4 rounded-xl border border-gray-100 bg-gray-50 px-4 py-3">
+            <p class="text-xs font-semibold uppercase tracking-widest text-gray-500">Address</p>
+            <p class="mt-1 text-sm leading-relaxed text-gray-700">8 Liberty Town, Islamabad, Pakistan</p>
+          </div>
+        </article>
+
+        <article class="group rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex min-w-0 items-center gap-3">
+              <img src="../frontend/assets/default.jpg" alt="User profile" class="h-14 w-14 rounded-full border-2 border-blue-100 object-cover" />
+              <div class="min-w-0">
+                <p class="truncate text-base font-bold text-gray-900">Ayesha Khan</p>
+                <p class="truncate text-sm text-blue-700">ayesha.khan@example.com</p>
+              </div>
+            </div>
+            <button type="button" aria-label="Delete user" class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-red-200 bg-red-50 text-red-600 transition-colors hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-200">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6"></path><path d="M14 11v6"></path>
+              </svg>
+            </button>
+          </div>
+          <div class="mt-4 rounded-xl border border-gray-100 bg-gray-50 px-4 py-3">
+            <p class="text-xs font-semibold uppercase tracking-widest text-gray-500">Address</p>
+            <p class="mt-1 text-sm leading-relaxed text-gray-700">71 Garden Road, Rawalpindi, Pakistan</p>
+          </div>
+        </article>
+
+        <article class="group rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex min-w-0 items-center gap-3">
+              <img src="../frontend/assets/default.jpg" alt="User profile" class="h-14 w-14 rounded-full border-2 border-blue-100 object-cover" />
+              <div class="min-w-0">
+                <p class="truncate text-base font-bold text-gray-900">Bilal Tariq</p>
+                <p class="truncate text-sm text-blue-700">bilal.tariq@example.com</p>
+              </div>
+            </div>
+            <button type="button" aria-label="Delete user" class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-red-200 bg-red-50 text-red-600 transition-colors hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-200">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6"></path><path d="M14 11v6"></path>
+              </svg>
+            </button>
+          </div>
+          <div class="mt-4 rounded-xl border border-gray-100 bg-gray-50 px-4 py-3">
+            <p class="text-xs font-semibold uppercase tracking-widest text-gray-500">Address</p>
+            <p class="mt-1 text-sm leading-relaxed text-gray-700">22 Main Boulevard, Multan, Pakistan</p>
+          </div>
+        </article>
+
+        <article class="group rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex min-w-0 items-center gap-3">
+              <img src="../frontend/assets/default.jpg" alt="User profile" class="h-14 w-14 rounded-full border-2 border-blue-100 object-cover" />
+              <div class="min-w-0">
+                <p class="truncate text-base font-bold text-gray-900">Emma Raza</p>
+                <p class="truncate text-sm text-blue-700">emma.raza@example.com</p>
+              </div>
+            </div>
+            <button type="button" aria-label="Delete user" class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-red-200 bg-red-50 text-red-600 transition-colors hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-200">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6"></path><path d="M14 11v6"></path>
+              </svg>
+            </button>
+          </div>
+          <div class="mt-4 rounded-xl border border-gray-100 bg-gray-50 px-4 py-3">
+            <p class="text-xs font-semibold uppercase tracking-widest text-gray-500">Address</p>
+            <p class="mt-1 text-sm leading-relaxed text-gray-700">12 University Lane, Peshawar, Pakistan</p>
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

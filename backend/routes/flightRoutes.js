@@ -15,4 +15,13 @@ router.route('/')
 
 router.get('/:slug', authController.authorize, flightController.getFlight);
 
+router.patch('/update-flight/:slug',
+    authController.authorize,
+    authController.restrictTo,
+    flightController.uploadFlightPhoto,
+    flightController.resizeFlightPhoto,
+    flightController.updateFlight);
+
+router.delete('/:slug', authController.authorize, authController.restrictTo, flightController.deleteFlight);
+
 module.exports = router;

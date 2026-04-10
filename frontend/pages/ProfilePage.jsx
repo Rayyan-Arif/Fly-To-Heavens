@@ -234,7 +234,7 @@ const ProfilePage = () => {
                                 Update flights
                             </Link>
                             <Link
-                                to="/admin/delete-flight"
+                                to="/flights"
                                 className="flex w-full items-center justify-center rounded-lg bg-[#1E3A8A] px-4 py-3 text-center text-base font-semibold text-white shadow-sm transition-colors hover:bg-[#172554] sm:text-lg"
                             >
                                 Remove Flights

@@ -1,4 +1,5 @@
 const Flight = require('../models/flightModel');
+const User = require('../models/userModel');
 const AppError = require('../utils/appError');
 const imageCoverHandler = require('../utils/imageCoverHandler');
 
@@ -66,6 +67,60 @@ exports.createFlight = async(req, res, next) => {
             data: {
                 flight
             }
+        });
+    } catch(err){
+        next(err);
+    }
+}
+
+exports.updateFlight = async(req, res, next) => {
+    try{
+        const slug = req.params.slug;
+
+        const filteredBody = {
+            departure: req.body.departure,
+            arrival: req.body.arrival,
+            duration: req.body.duration,
+            price: req.body.price,
+            dateAndTime: req.body.dateAndTime,
+            numberOfSeats: req.body.numberOfSeats,
+        }
+
+        const stops = [].concat(req.body.stops);
+
+        filteredBody.stops = stops?.filter(stop => stop.length > 0);
+
+        if(req.file) filteredBody.photo = `/assets/flights_img/${req.file.filename}`;
+
+        const flight = await Flight.updateOne({slug}, filteredBody, {runValidators: true});
+
+        res.status(201).send({
+            status: 'success',
+            message: 'Flight has been updated successfully!',
+            data: {
+                flight
+            }
+        });
+    } catch(err){
+        next(err);
+    }
+}
+
+exports.deleteFlight = async(req, res, next) => {
+    try{
+        const admin = await User.findOne({email: req.user.email}).select('+password');
+
+        const isPassCorrect = await admin.correctPassword(req.body.password, admin.password);
+
+        if(!isPassCorrect){
+            return next(new AppError('Incorrect Password!', 401));
+        }
+
+        await Flight.deleteOne({slug: req.params.slug});
+
+        res.status(204).send({
+            status: 'success',
+            message: 'flight deleted successfully'
         });
     } catch(err){
         next(err);

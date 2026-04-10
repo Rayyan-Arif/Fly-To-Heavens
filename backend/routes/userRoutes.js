@@ -13,5 +13,7 @@ router.post('/forgot-password', authController.forgotPassword);
 router.patch('/reset-password/:token', authController.resetPassword);
 router.patch('/update-password', authController.authorize, authController.updatePassword);
 router.delete('/close-account', authController.authorize, authController.closeAccount);
+router.get('/', authController.authorize, authController.restrictTo, userController.getAllUsers);
+router.delete('/:id', authController.authorize, authController.restrictTo, userController.deleteUser);
 
 module.exports = router;

@@ -45,6 +45,9 @@ const flightSchema = new mongoose.Schema({
 });
 
 flightSchema.pre('save', function(){
+    this.departure = this.departure.slice(0,1).toLowerCase() + this.departure.slice(1);
+    this.arrival = this.arrival.slice(0,1).toLowerCase() + this.arrival.slice(1);
+
     const slugString = `${this.departure} to ${this.arrival}`;
 
     this.slug = slugify(slugString, {

@@ -50,7 +50,7 @@ const FlightForm = ({isCreated}) => {
 
         let url = `${API_URL}/api/flights/`;
         if(!isCreated){
-            url += slug;
+            url += `update-flight/${slug}`;
         }
 
         const res = await fetch(url,{
@@ -105,7 +105,7 @@ const FlightForm = ({isCreated}) => {
             String(date.getDate()).padStart(2, "0");
 
             const formattedTime =
-            date.getHours() +
+            String(date.getHours()).padStart(2, "0") +
             ":" +
             String(date.getMinutes()).padStart(2, "0");
 

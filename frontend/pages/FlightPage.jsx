@@ -143,7 +143,7 @@ const FlightPage = () => {
                                     return <li key={stop} className="flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4">
                                                 <span className="mt-1 h-2.5 w-2.5 rounded-full bg-blue-600"></span>
                                                 <div>
-                                                    <p className="text-sm md:test-base font-semibold text-gray-900">{stop}</p>
+                                                    <p className="text-sm md:test-base font-semibold text-gray-900">{stop.slice(0,1).toUpperCase() + stop.slice(1)}</p>
                                                     <p className="text-xs md:text-sm text-gray-500">Technical Stop</p>
                                                 </div>
                                             </li>

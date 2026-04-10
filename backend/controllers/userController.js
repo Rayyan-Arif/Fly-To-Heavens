@@ -44,3 +44,38 @@ exports.updateUserData = async (req, res, next) => {
         next(err);
     } 
 }
+
+exports.getAllUsers = async(req, res, next) => {
+    try{
+        const users = await User.find({role: 'user'});
+
+        res.status(200).send({
+            status: 'success',
+            data: {
+                users
+            }
+        });
+    } catch(err){
+        next(err);
+    }
+}
+
+exports.deleteUser = async(req, res, next) => {
+    try{
+        const admin = await User.findOne({email: req.user.email}).select('+password');
+        
+        const isPassCorrect = await admin.correctPassword(req.body.password, admin.password);
+
+        if(!isPassCorrect){
+            return next(new AppError('Incorrect Password!', 401));
+        }
+        
+        await User.findByIdAndDelete(req.params.id);
+
+        res.status(204).send({
+            status: 'success'
+        });
+    } catch(err){
+        next(err);
+    }
+}
