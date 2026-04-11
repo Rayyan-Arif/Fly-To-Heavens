@@ -4,6 +4,7 @@ const { promisify } = require('util');
 const AppError = require('../utils/appError');
 const sendEmail = require('../utils/email');
 const crypto = require('crypto');
+const { OAuth2Client } = require('google-auth-library');    
 
 const signToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -35,12 +36,14 @@ const createSendToken = (res, user, statusCode) => {
 
 exports.signup = async (req, res, next) => {
     try{
+        // console.log(req.body);
+
         const filteredUser = {
             name: req.body.name,
             email: req.body.email,
             password: req.body.password,
             passwordConfirm: req.body.passwordConfirm,
-            age: req.body.age,
+            dateOfBirth: req.body.dateOfBirth,
             address: req.body.address,
         };
 
@@ -56,6 +59,7 @@ exports.signup = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
     try{
+        // console.log(req.body);
         const {email, password} = req.body;
 
         if(!email || !password){
@@ -271,4 +275,44 @@ exports.restrictTo = (req, res, next) => {
     if(req.user.role !== 'admin')
         return next(new AppError('Permissible for Admin only!', 401));
     next();
+}
+
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+
+exports.signUpWithGoogle = async(req, res, next) => {
+    try{
+        const {token} = req.body;
+
+        const ticket = await client.verifyIdToken({
+            idToken: token,
+            audience: process.env.GOOGLE_CLIENT_ID
+        });
+
+        const payload = ticket.getPayload();
+
+        const {email, name, picture} = payload;
+
+        const filteredUser = {
+            name,
+            email,
+            password: '--------',
+            passwordConfirm: '--------',
+            dateOfBirth: '-',
+            address: '-',
+            photo: picture
+        };
+
+        const userExists = await User.findOne({email});
+
+        if(userExists){
+            createSendToken(res, userExists, 200);
+            return;
+        }
+
+        const user = await User.create(filteredUser);
+
+        createSendToken(res, user, 201);
+    } catch(err){
+        next(err);
+    }
 }

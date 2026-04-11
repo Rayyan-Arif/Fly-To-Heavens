@@ -149,9 +149,13 @@ const UserCard = ({user}) => {
             <div className="mt-3 grid grid-cols-2 gap-2">
               <div className="rounded-lg border border-blue-100 bg-white px-3 py-2">
                 <p className="text-sm font-semibold uppercase tracking-wider text-gray-500">
-                  Age
+                  Date of birth
                 </p>
-                <p className="text-sm font-semibold text-blue-900">{user?.age}</p>
+                <p className="text-sm font-semibold text-blue-900">
+                  {user?.dateOfBirth !== '-'
+                    ? new Date(user.dateOfBirth).toLocaleDateString()
+                    : '—'}
+                </p>
               </div>
               <div className="rounded-lg border border-blue-100 bg-white px-3 py-2">
                 <p className="text-sm font-semibold uppercase tracking-wider text-gray-500">

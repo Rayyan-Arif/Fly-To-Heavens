@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { useNavigate, useOutletContext } from "react-router-dom";
 import sendErrorSuccessMessage from "../utils/sendErrorSuccessMessage";
+import { jwtDecode } from 'jwt-decode';
+import GoogleSignInPanel from '../components/GoogleSignInPanel';
 
 const SignUpPage = () => {
   const {user, setUser} = useOutletContext();
@@ -10,11 +12,17 @@ const SignUpPage = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [address, setAddress] = useState('');
-  const [age, setAge] = useState('');
+  const [dateOfBirth, setDateOfBirth] = useState('');
 
   const navigate = useNavigate();
 
   const API_URL = import.meta.env.VITE_API_URL;
+
+  const maxDob18Years = (() => {
+    const d = new Date();
+    d.setFullYear(d.getFullYear() - 18);
+    return d.toISOString().slice(0, 10);
+  })();
 
   const signUpUser = async () => {
     const res = await fetch(`${API_URL}/api/users/signup`,{
@@ -24,12 +32,12 @@ const SignUpPage = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        name,
-        email,
-        password,
-        passwordConfirm,
-        age,
-        address
+        name: name,
+        email: email,
+        password: password,
+        passwordConfirm: passwordConfirm,
+        dateOfBirth: dateOfBirth,
+        address: address
       })
     });
 
@@ -40,9 +48,31 @@ const SignUpPage = () => {
       setEmail('');
       setPassword('');
       setPasswordConfirm('');
-      setAge(0);
+      setDateOfBirth('');
       setAddress('');
       setUser(data.data.user);
+      navigate('/');
+    } else {
+      sendErrorSuccessMessage('error', data.message);
+    }
+  }
+
+  const signUpWithGoogle = async(credentialResponse) => {
+    const res = await fetch(`${API_URL}/api/users/signup-with-google`,{
+      method: "POST",
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        token: credentialResponse.credential
+      })
+    });
+
+    const data = await res.json();
+    if(data.status === 'success'){
+      sendErrorSuccessMessage('success', 'Sign up successfull!');
+      setUser(data.data?.user);
       navigate('/');
     } else {
       sendErrorSuccessMessage('error', data.message);
@@ -114,17 +144,18 @@ const SignUpPage = () => {
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
-                <label className="mb-1 block text-sm font-medium text-gray-700">Age</label>
+                <label className="mb-1 block text-sm font-medium text-gray-700">
+                  Date of birth
+                </label>
                 <input
-                  value={age}
-                  onChange={(e) => {setAge(e.target.value)}}
-                  id="signup-age"
-                  name="age"
-                  type="number"
-                  min="1"
+                  value={dateOfBirth}
+                  onChange={(e) => setDateOfBirth(e.target.value)}
+                  id="signup-dob"
+                  name="dateOfBirth"
+                  type="date"
+                  max={maxDob18Years}
                   required
                   className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"
-                  placeholder="Age"
                 />
               </div>
               <div>
@@ -165,6 +196,14 @@ const SignUpPage = () => {
               Create New Account
             </button>
           </form>
+
+          <GoogleSignInPanel
+            text="signup_with"
+            onSuccess={(credentialResponse) => {
+              signUpWithGoogle(credentialResponse);
+            }}
+            onError={() => sendErrorSuccessMessage('error', 'Signup failed!')}
+          />
         </div>
       </section>
     </main>

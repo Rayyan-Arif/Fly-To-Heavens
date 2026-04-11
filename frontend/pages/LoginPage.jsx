@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import sendErrorSuccessMessage from "../utils/sendErrorSuccessMessage";
+import { jwtDecode } from 'jwt-decode';
+import GoogleSignInPanel from '../components/GoogleSignInPanel';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const {user, setUser} = useOutletContext();
   const [emailSent, setEmailSent] = useState(false)
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false); 
 
   const navigate = useNavigate();
 
@@ -58,6 +60,28 @@ const LoginPage = () => {
 
     setEmailSent(false);
     setLoading(false);
+  }
+
+  const loginWithGoogle = async(credentialResponse) => {
+    const res = await fetch(`${API_URL}/api/users/signup-with-google`,{
+      method: "POST",
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        token: credentialResponse.credential
+      })
+    });
+
+    const data = await res.json();
+    if(data.status === 'success'){
+      sendErrorSuccessMessage('success', 'Sign up successfull!');
+      setUser(data.data?.user);
+      navigate('/');
+    } else {
+      sendErrorSuccessMessage('error', data.message);
+    }
   }
 
   useEffect(() => {
@@ -140,6 +164,14 @@ const LoginPage = () => {
               Login
             </button>
           </form>
+
+          <GoogleSignInPanel
+            text="signin_with"
+            onSuccess={(credentialResponse) => {
+              loginWithGoogle(credentialResponse);
+            }}
+            onError={() => sendErrorSuccessMessage('error', 'Login failed!')}
+          />
         </div>
       </section>
     </main>

@@ -15,5 +15,6 @@ router.patch('/update-password', authController.authorize, authController.update
 router.delete('/close-account', authController.authorize, authController.closeAccount);
 router.get('/', authController.authorize, authController.restrictTo, userController.getAllUsers);
 router.delete('/:id', authController.authorize, authController.restrictTo, userController.deleteUser);
+router.post('/signup-with-google', authController.signUpWithGoogle);
 
 module.exports = router;

@@ -2,13 +2,23 @@ import { useState, useEffect } from "react"
 import { useOutletContext, Link, useNavigate } from "react-router-dom"
 import sendErrorSuccessMessage from '../utils/sendErrorSuccessMessage'
 
+function toDateInputValue(value) {
+    if (!value) return ''
+    const d = new Date(value)
+    if (Number.isNaN(d.getTime())) return ''
+    const y = d.getFullYear()
+    const m = String(d.getMonth() + 1).padStart(2, '0')
+    const day = String(d.getDate()).padStart(2, '0')
+    return `${y}-${m}-${day}`
+}
+
 const ProfilePage = () => {
     //dashboard related states
     const { user, setUser } = useOutletContext()
     const [isFieldChanged, setIsFieldChanged] = useState(false);
     const [name, setName] = useState(user?.name || '');
     const [email, setEmail] = useState(user?.email || '');
-    const [age, setAge] = useState(user?.age || 0);
+    const [dateOfBirth, setDateOfBirth] = useState(toDateInputValue(user?.dateOfBirth));
     const [address, setAddress] = useState(user?.address || '');
     const [photo, setPhoto] = useState(user?.photo || '');
     const [passwordCurrent, setPasswordCurrent] = useState('');
@@ -25,11 +35,17 @@ const ProfilePage = () => {
     const API_URL = import.meta.env.VITE_API_URL;
     const navigate = useNavigate();
 
+    const maxDob18Years = (() => {
+        const d = new Date()
+        d.setFullYear(d.getFullYear() - 18)
+        return d.toISOString().slice(0, 10)
+    })()
+
     const updateUserData = async () => {
         const formData = new FormData();
         formData.append('name', name);
         formData.append('email', email);
-        formData.append('age', age);
+        formData.append('dateOfBirth', dateOfBirth);
         formData.append('address', address);
         formData.append('photo', photo);
 
@@ -356,6 +372,7 @@ const ProfilePage = () => {
                             id="pd-current-password"
                             name="current-password"
                             type="password"
+                            disabled={user?.isGoogleLogin}
                             value={passwordCurrent}
                             onChange={(e) => {setPasswordCurrent(e.target.value)}}
                             placeholder="••••••••"
@@ -373,6 +390,7 @@ const ProfilePage = () => {
                             id="pd-password"
                             name="password"
                             type="password"
+                            disabled={user?.isGoogleLogin}
                             value={password}
                             onChange={(e) => {setPassword(e.target.value)}}
                             placeholder="••••••••"
@@ -390,6 +408,7 @@ const ProfilePage = () => {
                             id="pd-password-confirm"
                             name="password-confirm"
                             type="password"
+                            disabled={user?.isGoogleLogin}
                             value={passwordConfirm}
                             onChange={(e) => {setPasswordConfirm(e.target.value)}}
                             placeholder="••••••••"
@@ -398,7 +417,7 @@ const ProfilePage = () => {
                         <button
                             type="button"
                             onClick={updatePassword}
-                            disabled={loading}
+                            disabled={loading || user?.isGoogleLogin}
                             className={`${loading ? 'cursor-not-allowed bg-gray-600' : 'cursor-pointer bg-[#1E3A8A] hover:bg-blue-700'} mt-4 inline-flex min-h-12 items-center justify-center rounded-lg px-8 py-3 text-base font-semibold text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500`}
                         >
                             Update password
@@ -409,18 +428,18 @@ const ProfilePage = () => {
                         <label
                             className="mb-1 block text-sm font-semibold text-blue-900 sm:text-base"
                         >
-                            Age
+                            Date of birth
                         </label>
                         <input
-                            value={age}
+                            value={dateOfBirth}
                             onChange={(e) => {
                                 setIsFieldChanged(true);
-                                setAge(e.target.value);
+                                setDateOfBirth(e.target.value);
                             }}
-                            id="pd-age"
-                            name="age"
-                            type="number"
-                            min="18"
+                            id="pd-dob"
+                            name="dateOfBirth"
+                            type="date"
+                            max={maxDob18Years}
                             className="w-full rounded-lg border border-blue-200 bg-white px-4 py-3 text-base text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
                         />
                         </div>

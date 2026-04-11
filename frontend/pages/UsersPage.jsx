@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import UserCard from "../components/UserCard";
 
 const UsersPage = () => {
@@ -7,6 +7,8 @@ const UsersPage = () => {
     const {user} = useOutletContext();
 
     const [users, setUsers] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(!user){

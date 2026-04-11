@@ -1,11 +1,14 @@
 import { Link, useOutletContext } from "react-router-dom"
 import sendErrorSuccessMessage from '../utils/sendErrorSuccessMessage'
 import logo from '../logo.png'
+import { googleLogout } from "@react-oauth/google"  
 
 const Navbar = ({isLoggedIn, user, setUser}) => {
   let username = user?.name;
 
   const logOutUser = async () => {
+    googleLogout();
+    
     const API_URL = import.meta.env.VITE_API_URL;
     const res = await fetch(`${API_URL}/api/users/logout`, {
       credentials: 'include'

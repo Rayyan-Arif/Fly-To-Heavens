@@ -28,13 +28,16 @@ exports.updateUserData = async (req, res, next) => {
         const filteredBody = {
             name: req.body.name,
             email: req.body.email,
-            age: req.body.age,
+            dateOfBirth: req.body.dateOfBirth,
             address: req.body.address
         }
 
         if(req.file) filteredBody.photo = `/assets/users_img/${req.file.filename}`;
 
-        await User.findByIdAndUpdate(req.user.id, filteredBody);
+        await User.findByIdAndUpdate(req.user.id, filteredBody, {
+            runValidators: true,
+            new: true,
+        });
 
         res.status(200).send({
             status: 'success',

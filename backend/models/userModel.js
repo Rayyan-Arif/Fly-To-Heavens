@@ -32,10 +32,19 @@ const userSchema = new mongoose.Schema({
         }
     },
     passwordChangedAt: Date,
-    age: {
-        type: Number,
-        required: [true, 'user must have a age'],
-        min: 18
+    dateOfBirth: {
+        type: String,
+        required: [true, 'user must have a date of birth'],
+        validate: {
+            validator: function (d) {
+                if(d == '-') return true;
+                if (!d) return false;
+                const ms = Date.now() - new Date(d).getTime();
+                const years = ms / (365.25 * 24 * 60 * 60 * 1000);
+                return years >= 18;
+            },
+            message: 'User must be at least 18 years old',
+        },
     },
     photo: {
         type: String,
@@ -43,7 +52,7 @@ const userSchema = new mongoose.Schema({
     },
     address: {
         type: String,
-        required: [true, 'user must have a address']
+        required: [true, 'user must have a address'],
     },
     role: {
         type: String,
@@ -51,7 +60,7 @@ const userSchema = new mongoose.Schema({
         enum: ['user','admin']
     },
     passwordResetToken: String,
-    passwordResetTokenExpires: Date
+    passwordResetTokenExpires: Date,
 });
 
 userSchema.pre('save', async function(){
