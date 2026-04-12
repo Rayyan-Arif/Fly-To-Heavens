@@ -1,2 +1,10 @@
+# Dependencies
 node_modules/
-config.env
+
+# Environment & secrets (do not commit)
+backend/config.env
+frontend/.env
+frontend/.env.*
+
+# Frontend build output
+frontend/dist

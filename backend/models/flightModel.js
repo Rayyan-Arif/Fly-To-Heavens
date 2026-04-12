@@ -32,10 +32,16 @@ const flightSchema = new mongoose.Schema({
         type: Date,
         required: [true, 'flight must have a date and time'],
     },
-    numberOfSeats: {
+    seatsPerRow: {
         type: Number,
-        required: [true, 'flight must have number of seats'],
-        default: 50
+        required: [true, 'flight must have seats per row'],
+        enum: [3,4,6]
+    },
+    totalRows: {
+        type: Number,
+        required: [true, 'flight must have total number of rows'],
+        min: 1,
+        max: 50
     },
     availableSeats: {
         type: Number,
@@ -55,7 +61,7 @@ flightSchema.pre('save', function(){
         strict: true
     });
 
-    if(this.isNew) this.availableSeats = this.numberOfSeats;
+    if(this.isNew) this.availableSeats = this.seatsPerRow * this.totalRows;
 });
 
 const flightModel = new mongoose.model('Flight', flightSchema);

@@ -117,9 +117,15 @@ const FlightPage = () => {
                     </div>
                     <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
                     <p className="text-xs font-semibold uppercase tracking-widest text-gray-500">
-                        Total Seats
+                        Total rows
                     </p>
-                    <p className="mt-1 text-base font-semibold text-gray-900">{flight.numberOfSeats}</p>
+                    <p className="mt-1 text-base font-semibold text-gray-900">{flight.totalRows}</p>
+                    </div>
+                    <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-gray-500">
+                        Seats per row
+                    </p>
+                    <p className="mt-1 text-base font-semibold text-gray-900">{flight.seatsPerRow}</p>
                     </div>
                     <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
                     <p className="text-xs font-semibold uppercase tracking-widest text-gray-500">

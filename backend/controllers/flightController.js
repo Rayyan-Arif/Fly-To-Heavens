@@ -2,6 +2,7 @@ const Flight = require('../models/flightModel');
 const User = require('../models/userModel');
 const AppError = require('../utils/appError');
 const imageCoverHandler = require('../utils/imageCoverHandler');
+const layoutMaker = require('../utils/layoutMaker');
 
 exports.getAllFlights = async (req, res, next) => {
     try{
@@ -50,7 +51,8 @@ exports.createFlight = async(req, res, next) => {
             duration: req.body.duration,
             price: req.body.price,
             dateAndTime: req.body.dateAndTime,
-            numberOfSeats: req.body.numberOfSeats,
+            totalRows: req.body.totalRows,
+            seatsPerRow: req.body.seatsPerRow
         }
 
         const stops = [].concat(req.body.stops);
@@ -60,6 +62,8 @@ exports.createFlight = async(req, res, next) => {
         if(req.file) filteredBody.photo = `/assets/flights_img/${req.file.filename}`;
 
         const flight = await Flight.create(filteredBody);
+
+        const seats = layoutMaker(flight._id, flight.totalRows, flight.seatsPerRow);
 
         res.status(201).send({
             status: 'success',
@@ -83,7 +87,8 @@ exports.updateFlight = async(req, res, next) => {
             duration: req.body.duration,
             price: req.body.price,
             dateAndTime: req.body.dateAndTime,
-            numberOfSeats: req.body.numberOfSeats,
+            totalRows: req.body.totalRows,
+            seatsPerRow: req.body.seatsPerRow
         }
 
         const stops = [].concat(req.body.stops);

@@ -16,7 +16,8 @@ const FlightForm = ({isCreated}) => {
     const [price, setPrice] = useState('');
     const [duration, setDuration] = useState('');
     const [time, setTime] = useState('');
-    const [numberOfSeats, setNumberOfSeats] = useState('');
+    const [totalRows, setTotalRows] = useState('');
+    const [seatsPerRow, setSeatsPerRow] = useState('');
     const [stops, setStops] = useState([]);
 
     const [tempStop, setTempStop] = useState('');
@@ -41,7 +42,8 @@ const FlightForm = ({isCreated}) => {
         formData.append('arrival',arrival);
         formData.append('duration',duration);
         formData.append('price',price);
-        formData.append('numberOfSeats',numberOfSeats);
+        formData.append('totalRows', totalRows);
+        formData.append('seatsPerRow', seatsPerRow);
         formData.append('dateAndTime',new Date(`${date}T${time}`));
         
         finalStops?.forEach(stop => {
@@ -113,7 +115,12 @@ const FlightForm = ({isCreated}) => {
             setArrival(temp.arrival);
             setPrice(temp.price);
             setDuration(temp.duration);
-            setNumberOfSeats(temp.numberOfSeats);
+            setTotalRows(temp.totalRows);
+            setSeatsPerRow(
+                temp.seatsPerRow != null && temp.seatsPerRow !== ''
+                    ? String(temp.seatsPerRow)
+                    : ''
+            );
             setStops(temp.stops);
             setDate(formattedDate);
             setTime(formattedTime);
@@ -259,21 +266,43 @@ const FlightForm = ({isCreated}) => {
                     />
                     </div>
 
-                    <div className="sm:col-span-2">
-                    <label htmlFor="numberOfSeats" className="mb-1 block text-md font-medium text-gray-700">
-                        Number of seats
+                    <div>
+                    <label htmlFor="totalRows" className="mb-1 block text-md font-medium text-gray-700">
+                        Total rows
                     </label>
                     <input
-                        value={numberOfSeats}
-                        onChange={e => setNumberOfSeats(e.target.value)}
-                        id="numberOfSeats"
-                        name="numberOfSeats"
+                        value={totalRows}
+                        onChange={e => setTotalRows(e.target.value)}
+                        id="totalRows"
+                        name="totalRows"
                         type="number"
                         min="1"
+                        max="50"
                         required
-                        placeholder="e.g., 50"
+                        placeholder="e.g., 10"
                         className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"
                     />
+                    </div>
+
+                    <div>
+                    <label htmlFor="seatsPerRow" className="mb-1 block text-md font-medium text-gray-700">
+                        Seats per row
+                    </label>
+                    <select
+                        value={seatsPerRow}
+                        onChange={(e) => setSeatsPerRow(Number(e.target.value[0]))}
+                        id="seatsPerRow"
+                        name="seatsPerRow"
+                        required
+                        className="w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                    >
+                        <option value="" disabled>
+                            Select layout
+                        </option>
+                        <option value="3">3 seats per row</option>
+                        <option value="4">4 seats per row</option>
+                        <option value="6">6 seats per row</option>
+                    </select>
                     </div>
                 </div>
 

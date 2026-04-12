@@ -295,11 +295,12 @@ exports.signUpWithGoogle = async(req, res, next) => {
         const filteredUser = {
             name,
             email,
-            password: '--------',
-            passwordConfirm: '--------',
+            password: '----------------',
+            passwordConfirm: '----------------',
             dateOfBirth: '-',
             address: '-',
-            photo: picture
+            photo: picture,
+            isGoogleLogin: true
         };
 
         const userExists = await User.findOne({email});
