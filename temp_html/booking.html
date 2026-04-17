@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book flight — Fly To Heavens (preview)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-800 antialiased">
+  <!-- Matches site navbar feel (static preview only) -->
+  <header class="sticky top-0 z-50 border-b border-[#E5E7EB] bg-[#1E3A8A] text-white shadow-sm">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-2 text-lg font-semibold tracking-tight sm:text-xl">
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-sm font-bold text-[#3B82F6]">✈</span>
+        <span>Fly To Heavens</span>
+      </div>
+      <span class="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-blue-100">Booking preview</span>
+    </div>
+  </header>
+
+  <main class="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+    <section class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+      <!-- Header band (same vibe as FlightForm admin strip, repurposed for passenger booking) -->
+      <div class="bg-gradient-to-r from-blue-900 via-[#1e3a8a] to-blue-900 px-5 py-7 text-white sm:px-8 sm:py-9">
+        <p class="text-xs font-semibold uppercase tracking-widest text-blue-200 sm:text-sm">Reserve your seat</p>
+        <h1 class="mt-2 text-2xl font-bold sm:text-3xl">Complete your booking</h1>
+        <p class="mt-2 max-w-2xl text-sm text-blue-100 sm:text-base">
+          Review the flight below, then choose your seats. Tap a seat card to select it — no JavaScript required.
+        </p>
+      </div>
+
+      <div class="p-5 sm:p-7 lg:p-8">
+        <!-- Flight summary: mirrors FlightPage.jsx (hero image + route, price chip, tiles, stops) -->
+        <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm ring-1 ring-gray-100">
+          <div class="grid lg:grid-cols-12">
+            <div class="relative min-h-[14rem] h-full lg:col-span-5">
+              <img
+                src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80"
+                alt=""
+                class="absolute inset-0 h-full w-full object-cover"
+              />
+              <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/10 lg:bg-gradient-to-r lg:from-black/35 lg:via-transparent lg:to-transparent"></div>
+              <p class="absolute bottom-4 left-4 right-4 text-sm font-semibold tracking-wide text-white drop-shadow-md lg:bottom-auto lg:left-6 lg:right-auto lg:top-6 lg:text-xs lg:uppercase lg:tracking-widest lg:text-blue-100">
+                Your flight
+              </p>
+            </div>
+
+            <div class="flex flex-col border-t border-gray-100 bg-white p-5 sm:p-6 lg:col-span-7 lg:border-l lg:border-t-0 lg:p-8">
+              <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                <div class="min-w-0">
+                  <p class="text-xs font-semibold uppercase tracking-widest text-blue-500">Route</p>
+                  <h2 class="mt-1 text-2xl font-bold leading-tight text-gray-900 sm:text-3xl">
+                    Lahore <span class="mx-1 text-blue-400" aria-hidden="true">→</span> Istanbul
+                  </h2>
+                </div>
+                <div class="shrink-0 rounded-xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white px-4 py-3 shadow-sm">
+                  <p class="text-xs font-semibold uppercase tracking-widest text-blue-700">Price</p>
+                  <p class="mt-1 text-2xl font-bold tabular-nums text-blue-900">$429<span class="text-lg font-bold text-blue-800/90">.00</span></p>
+                  <p class="mt-0.5 text-xs font-medium text-blue-700/80">per person</p>
+                </div>
+              </div>
+
+              <div class="grid gap-3 sm:grid-cols-2 sm:gap-4">
+                <div class="rounded-xl border border-gray-200 bg-gray-50 p-4 transition-colors hover:border-blue-200/60 hover:bg-gray-50/80">
+                  <p class="text-xs font-semibold uppercase tracking-widest text-gray-500">Departure</p>
+                  <p class="mt-1.5 text-base font-semibold text-gray-900">Lahore</p>
+                </div>
+                <div class="rounded-xl border border-gray-200 bg-gray-50 p-4 transition-colors hover:border-blue-200/60 hover:bg-gray-50/80">
+                  <p class="text-xs font-semibold uppercase tracking-widest text-gray-500">Arrival</p>
+                  <p class="mt-1.5 text-base font-semibold text-gray-900">Istanbul</p>
+                </div>
+                <div class="rounded-xl border border-gray-200 bg-gray-50 p-4 transition-colors hover:border-blue-200/60 hover:bg-gray-50/80">
+                  <p class="text-xs font-semibold uppercase tracking-widest text-gray-500">Date &amp; time</p>
+                  <p class="mt-1.5 text-base font-semibold text-gray-900">Sun, 18 May 2026</p>
+                  <p class="mt-1 text-sm font-medium text-blue-800">14:30 departure</p>
+                </div>
+                <div class="rounded-xl border border-gray-200 bg-gray-50 p-4 transition-colors hover:border-blue-200/60 hover:bg-gray-50/80">
+                  <p class="text-xs font-semibold uppercase tracking-widest text-gray-500">Duration</p>
+                  <p class="mt-1.5 text-base font-semibold text-gray-900">6h 20m</p>
+                  <p class="mt-1 text-sm text-gray-500">Total time in the air</p>
+                </div>
+              </div>
+
+              <div class="mt-8 border-t border-gray-100 pt-8">
+                <h3 class="text-lg font-bold text-gray-900 sm:text-xl">Stops</h3>
+                <p class="mt-1 text-sm text-gray-500">Connections and layovers for this itinerary.</p>
+                <ol class="mt-4 space-y-3">
+                  <li class="flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4 shadow-sm ring-1 ring-gray-100">
+                    <span class="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-blue-600" aria-hidden="true"></span>
+                    <div class="min-w-0">
+                      <p class="text-sm font-semibold text-gray-900 sm:text-base">Dubai (DXB)</p>
+                      <p class="text-xs text-gray-500 sm:text-sm">Layover · 2h 15m</p>
+                    </div>
+                  </li>
+                  <li class="flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4 shadow-sm ring-1 ring-gray-100">
+                    <span class="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-blue-600" aria-hidden="true"></span>
+                    <div class="min-w-0">
+                      <p class="text-sm font-semibold text-gray-900 sm:text-base">Vienna (VIE)</p>
+                      <p class="text-xs text-gray-500 sm:text-sm">Layover · 1h 05m</p>
+                    </div>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cabin & seat map -->
+        <div class="mt-10 border-t border-gray-200 pt-10">
+          <div class="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 class="text-xl font-bold text-[#1E3A8A] sm:text-2xl">Choose your seats</h2>
+              <p class="mt-1 text-sm text-gray-600">Layout: 3 seats · aisle · 3 seats (economy). Click cards to toggle.</p>
+            </div>
+            <div class="rounded-lg bg-slate-100 px-4 py-2 text-center text-xs font-medium text-slate-600 ring-1 ring-slate-200">
+              Front of aircraft
+              <span class="mt-1 block text-[10px] font-normal uppercase tracking-wider text-slate-400">← cockpit</span>
+            </div>
+          </div>
+
+          <div class="relative overflow-x-auto rounded-2xl border border-gray-200 bg-gradient-to-b from-slate-100 via-slate-50 to-slate-100 p-4 sm:p-8">
+            <!-- Fuselage outline hint -->
+            <div class="pointer-events-none absolute inset-4 rounded-[2rem] border border-slate-200/80 sm:inset-6"></div>
+
+            <form class="relative mx-auto max-w-3xl space-y-3 sm:space-y-4" action="#" method="get">
+              <!-- Row 1 -->
+              <div class="flex items-stretch justify-center gap-2 sm:gap-3">
+                <span class="flex w-7 shrink-0 items-center justify-center text-xs font-bold text-slate-400 sm:w-8">1</span>
+                <div class="flex flex-1 justify-end gap-2 sm:gap-3">
+                  <!-- Seat 1A -->
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="1A" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">1A</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-700">Window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="1B" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">1B</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">No window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="1C" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">1C</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">No window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                </div>
+                <div class="flex w-6 shrink-0 flex-col items-center justify-center sm:w-10" aria-hidden="true">
+                  <div class="h-full w-1 rounded-full bg-slate-300/90"></div>
+                </div>
+                <div class="flex flex-1 justify-start gap-2 sm:gap-3">
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="1D" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">1D</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">No window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="1E" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">1E</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">No window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="1F" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">1F</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-700">Window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                </div>
+                <span class="w-7 sm:w-8" aria-hidden="true"></span>
+              </div>
+
+              <!-- Row 2 (2D occupied — not a label, no toggle) -->
+              <div class="flex items-stretch justify-center gap-2 sm:gap-3">
+                <span class="flex w-7 shrink-0 items-center justify-center text-xs font-bold text-slate-400 sm:w-8">2</span>
+                <div class="flex flex-1 justify-end gap-2 sm:gap-3">
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="2A" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">2A</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-700">Window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="2B" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">2B</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">No window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="2C" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">2C</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">No window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                </div>
+                <div class="flex w-6 shrink-0 flex-col items-center justify-center sm:w-10" aria-hidden="true">
+                  <div class="h-full w-1 rounded-full bg-slate-300/90"></div>
+                </div>
+                <div class="flex flex-1 justify-start gap-2 sm:gap-3">
+                  <div class="w-[4.5rem] sm:w-24" role="img" aria-label="Seat 2D occupied">
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-gray-100 p-2 text-center shadow-inner opacity-75 ring-1 ring-inset ring-gray-200">
+                      <span class="text-lg font-bold text-gray-400 line-through sm:text-xl">2D</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">No window</span>
+                      <span class="mt-1 text-[10px] font-semibold uppercase tracking-wider text-gray-400">Taken</span>
+                    </span>
+                  </div>
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="2E" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">2E</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">No window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="2F" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">2F</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-700">Window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                </div>
+                <span class="w-7 sm:w-8" aria-hidden="true"></span>
+              </div>
+
+              <!-- Row 3 -->
+              <div class="flex items-stretch justify-center gap-2 sm:gap-3">
+                <span class="flex w-7 shrink-0 items-center justify-center text-xs font-bold text-slate-400 sm:w-8">3</span>
+                <div class="flex flex-1 justify-end gap-2 sm:gap-3">
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="3A" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">3A</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-700">Window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="3B" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">3B</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">No window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                  <div class="w-[4.5rem] sm:w-24" role="img" aria-label="Seat 3C occupied">
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-gray-100 p-2 text-center shadow-inner opacity-75 ring-1 ring-inset ring-gray-200">
+                      <span class="text-lg font-bold text-gray-400 line-through sm:text-xl">3C</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">No window</span>
+                      <span class="mt-1 text-[10px] font-semibold uppercase tracking-wider text-gray-400">Taken</span>
+                    </span>
+                  </div>
+                </div>
+                <div class="flex w-6 shrink-0 flex-col items-center justify-center sm:w-10" aria-hidden="true">
+                  <div class="h-full w-1 rounded-full bg-slate-300/90"></div>
+                </div>
+                <div class="flex flex-1 justify-start gap-2 sm:gap-3">
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="3D" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">3D</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">No window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="3E" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">3E</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">No window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="3F" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">3F</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-700">Window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                </div>
+                <span class="w-7 sm:w-8" aria-hidden="true"></span>
+              </div>
+
+              <!-- Row 4 -->
+              <div class="flex items-stretch justify-center gap-2 sm:gap-3">
+                <span class="flex w-7 shrink-0 items-center justify-center text-xs font-bold text-slate-400 sm:w-8">4</span>
+                <div class="flex flex-1 justify-end gap-2 sm:gap-3">
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="4A" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">4A</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-700">Window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="4B" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">4B</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">No window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="4C" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">4C</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">No window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                </div>
+                <div class="flex w-6 shrink-0 flex-col items-center justify-center sm:w-10" aria-hidden="true">
+                  <div class="h-full w-1 rounded-full bg-slate-300/90"></div>
+                </div>
+                <div class="flex flex-1 justify-start gap-2 sm:gap-3">
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="4D" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">4D</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">No window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="4E" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">4E</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">No window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="4F" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">4F</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-700">Window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                </div>
+                <span class="w-7 sm:w-8" aria-hidden="true"></span>
+              </div>
+
+              <!-- Row 5 -->
+              <div class="flex items-stretch justify-center gap-2 sm:gap-3">
+                <span class="flex w-7 shrink-0 items-center justify-center text-xs font-bold text-slate-400 sm:w-8">5</span>
+                <div class="flex flex-1 justify-end gap-2 sm:gap-3">
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="5A" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">5A</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-700">Window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="5B" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">5B</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">No window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="5C" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">5C</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">No window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                </div>
+                <div class="flex w-6 shrink-0 flex-col items-center justify-center sm:w-10" aria-hidden="true">
+                  <div class="h-full w-1 rounded-full bg-slate-300/90"></div>
+                </div>
+                <div class="flex flex-1 justify-start gap-2 sm:gap-3">
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="5D" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">5D</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">No window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="5E" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">5E</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">No window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                  <label class="w-[4.5rem] cursor-pointer sm:w-24">
+                    <input type="checkbox" name="seat" value="5F" class="peer sr-only" />
+                    <span class="flex h-full min-h-[6.75rem] flex-col items-center justify-center rounded-xl border-2 border-gray-200 bg-white p-2 text-center shadow-sm transition-all duration-150 peer-checked:border-[#1E3A8A] peer-checked:bg-blue-50 peer-checked:shadow-md peer-checked:ring-2 peer-checked:ring-[#3B82F6]/40 hover:border-[#3B82F6]/50 hover:shadow-md peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3B82F6]">
+                      <span class="text-lg font-bold text-[#1E3A8A] sm:text-xl">5F</span>
+                      <span class="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-700">Window</span>
+                      <span class="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">Economy</span>
+                    </span>
+                  </label>
+                </div>
+                <span class="w-7 sm:w-8" aria-hidden="true"></span>
+              </div>
+
+              <p class="pt-4 text-center text-xs text-gray-500">
+                Static preview: submitting the form would append selected <code class="rounded bg-gray-200 px-1 py-0.5">seat</code> values to the URL (GET). In the real app you will POST JSON instead.
+              </p>
+
+              <div class="mt-6 flex flex-col gap-3 border-t border-gray-200 pt-6 sm:flex-row sm:items-center sm:justify-between">
+                <p class="text-sm text-gray-600">
+                  <span class="font-semibold text-[#1E3A8A]">Tip:</span> use keyboard — focus a seat and press Space to toggle.
+                </p>
+                <button
+                  type="submit"
+                  class="inline-flex min-h-[48px] w-full items-center justify-center rounded-lg bg-[#1E3A8A] px-8 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-[#172554] focus:outline-none focus:ring-2 focus:ring-blue-200 sm:w-auto"
+                >
+                  Continue to passenger details
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="mt-8 text-center text-xs text-gray-400">
+      Standalone mockup in <code class="text-gray-500">temp_html/booking.html</code> — not linked to the React app.
+    </p>
+  </main>
+</body>
+</html>

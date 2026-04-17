@@ -13,6 +13,7 @@ import ResetPasswordPage from '../pages/ResetPasswordPage';
 import CreateFlightPage from '../pages/CreateFlightPage';
 import UpdateFlightPage from '../pages/UpdateFlightPage';
 import UsersPage from '../pages/UsersPage';
+import BookFlightPage from '../pages/BookFlightPage';
 
 const App = () => {
   const router = createBrowserRouter(
@@ -29,6 +30,7 @@ const App = () => {
         <Route path='/admin/create-flight' element={<CreateFlightPage />}/>
         <Route path='/flights/update/:slug' element={<UpdateFlightPage />}/>
         <Route path='/admin/manage-users' element={<UsersPage />}/>
+        <Route path='/flights/bookings/:slug' element={<BookFlightPage />}/>
         <Route path='*' element={<NotFoundPage />}/>
       </Route>
     )

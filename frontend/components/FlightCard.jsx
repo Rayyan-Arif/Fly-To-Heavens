@@ -138,13 +138,13 @@ const FlightCard = ({flight}) => {
                     <p className="text-xs font-semibold uppercase tracking-widest text-blue-500">
                         Departure
                     </p>
-                    <p className="truncate text-base font-semibold text-gray-900">{flight.departure}</p>
+                    <p className="truncate text-base font-semibold text-gray-900">{flight?.departure.slice(0,1).toUpperCase() + flight?.departure.slice(1)}</p>
                     </div>
                     <div className="min-w-0 flex-1 text-right">
                     <p className="text-xs font-semibold uppercase tracking-widest text-blue-500">
                         Arrival
                     </p>
-                    <p className="truncate text-base font-semibold text-gray-900">{flight.arrival}</p>
+                    <p className="truncate text-base font-semibold text-gray-900">{flight?.arrival.slice(0,1).toUpperCase() + flight?.arrival.slice(1)}</p>
                     </div>
                 </div>
 
@@ -170,7 +170,7 @@ const FlightCard = ({flight}) => {
                     <p className="text-xs font-semibold uppercase tracking-widest text-gray-500">
                         Price
                     </p>
-                    <p className="mt-1 text-xl font-bold text-blue-900">${flight.price}</p>
+                    <p className="mt-1 text-xl font-bold text-blue-900">Rs. {flight.price}</p>
                     </div>
                     <div className="flex flex-wrap items-center justify-center gap-3">
                     {

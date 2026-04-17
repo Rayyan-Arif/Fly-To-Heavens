@@ -48,6 +48,16 @@ const flightSchema = new mongoose.Schema({
         default: 50
     },
     slug: String
+},
+{
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+});
+
+flightSchema.virtual('seats',{
+    ref: 'Seat',
+    localField: '_id',
+    foreignField: 'flight'
 });
 
 flightSchema.pre('save', function(){
