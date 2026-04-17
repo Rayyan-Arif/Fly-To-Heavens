@@ -79,14 +79,14 @@ const FlightPage = () => {
                         Route
                     </p>
                     <h2 className="mt-1 text-2xl font-bold text-gray-900 sm:text-3xl">
-                        {flight.departure} → {flight.arrival}
+                        {flight?.departure?.slice(0,1).toUpperCase() + flight?.departure?.slice(1)} → {flight?.arrival?.slice(0,1).toUpperCase() + flight?.arrival?.slice(1)}
                     </h2>
                     </div>
                     <div className="rounded-xl border border-blue-100 bg-blue-50 px-4 py-3">
                     <p className="text-xs font-semibold uppercase tracking-widest text-blue-700">
                         Price
                     </p>
-                    <p className="mt-1 text-2xl font-bold text-blue-900">${flight.price}</p>
+                    <p className="mt-1 text-2xl font-bold text-blue-900">Rs. {flight.price}</p>
                     </div>
                 </div>
 
@@ -95,13 +95,13 @@ const FlightPage = () => {
                     <p className="text-xs font-semibold uppercase tracking-widest text-gray-500">
                         Departure
                     </p>
-                    <p className="mt-1 text-base font-semibold text-gray-900">{flight.departure}</p>
+                    <p className="mt-1 text-base font-semibold text-gray-900">{flight?.departure?.slice(0,1).toUpperCase() + flight?.departure?.slice(1)}</p>
                     </div>
                     <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
                     <p className="text-xs font-semibold uppercase tracking-widest text-gray-500">
                         Arrival
                     </p>
-                    <p className="mt-1 text-base font-semibold text-gray-900">{flight.arrival}</p>
+                    <p className="mt-1 text-base font-semibold text-gray-900">{flight?.arrival?.slice(0,1).toUpperCase() + flight?.arrival?.slice(1)}</p>
                     </div>
                     <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
                     <p className="text-xs font-semibold uppercase tracking-widest text-gray-500">
@@ -149,7 +149,7 @@ const FlightPage = () => {
                                     return <li key={stop} className="flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4">
                                                 <span className="mt-1 h-2.5 w-2.5 rounded-full bg-blue-600"></span>
                                                 <div>
-                                                    <p className="text-sm md:test-base font-semibold text-gray-900">{stop.slice(0,1).toUpperCase() + stop.slice(1)}</p>
+                                                    <p className="text-sm md:test-base font-semibold text-gray-900">{stop?.slice(0,1).toUpperCase() + stop?.slice(1)}</p>
                                                     <p className="text-xs md:text-sm text-gray-500">Technical Stop</p>
                                                 </div>
                                             </li>
@@ -163,7 +163,7 @@ const FlightPage = () => {
 
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                     <Link
-                    to={`/bookings/${flight.slug}`}
+                    to={`/flights/bookings/${flight.slug}`}
                     className="inline-flex min-h-[48px] w-full items-center justify-center rounded-lg bg-[#1E3A8A] px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-[#172554] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3B82F6] sm:w-auto"
                     >
                     Book this flight

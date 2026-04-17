@@ -1,5 +1,6 @@
 const Flight = require('../models/flightModel');
 const User = require('../models/userModel');
+const Seat = require('../models/seatModel');
 const AppError = require('../utils/appError');
 const imageCoverHandler = require('../utils/imageCoverHandler');
 const layoutMaker = require('../utils/layoutMaker');
@@ -22,7 +23,7 @@ exports.getAllFlights = async (req, res, next) => {
 
 exports.getFlight = async(req, res, next) => {
     try{
-        const flight = await Flight.findOne({slug: req.params.slug});
+        const flight = await Flight.findOne({slug: req.params.slug}).populate('seats');
 
         if(!flight){
             return next(new AppError('No such flight exist!',404));
@@ -63,13 +64,16 @@ exports.createFlight = async(req, res, next) => {
 
         const flight = await Flight.create(filteredBody);
 
-        const seats = layoutMaker(flight._id, flight.totalRows, flight.seatsPerRow);
+        const layout = layoutMaker(flight._id, flight.totalRows, flight.seatsPerRow);
+
+        const seats = await Seat.create(layout);
 
         res.status(201).send({
             status: 'success',
             message: 'Flight has been created successfully!',
             data: {
-                flight
+                flight,
+                seats
             }
         });
     } catch(err){
